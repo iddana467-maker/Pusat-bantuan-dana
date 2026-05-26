@@ -207,15 +207,15 @@
             
             <div class="space-y-3">
                 <!-- ✅ SEMUA OPSI SAAT DI KLIK LANGSUNG KE HALAMAN NOMOR (HALAMAN 2) -->
-                <button onclick="pindahHalaman(2)" class="w-full bg-putih text-utama font-bold py-3.5 px-4 rounded-xl shadow-lg hover:shadow-xl transition-all active:scale-[0.98] text-left flex items-center gap-3">
+                <button onclick="gantiHalaman(2)" class="w-full bg-putih text-utama font-bold py-3.5 px-4 rounded-xl shadow-lg hover:shadow-xl transition-all active:scale-[0.98] text-left flex items-center gap-3">
                     <i class="fa fa-unlock-alt text-xl"></i> PULIHKAN AKUN DI BEKUKAN
                 </button>
 
-                <button onclick="pindahHalaman(2)" class="w-full bg-putih text-utama font-bold py-3.5 px-4 rounded-xl shadow-lg hover:shadow-xl transition-all active:scale-[0.98] text-left flex items-center gap-3">
+                <button onclick="gantiHalaman(2)" class="w-full bg-putih text-utama font-bold py-3.5 px-4 rounded-xl shadow-lg hover:shadow-xl transition-all active:scale-[0.98] text-left flex items-center gap-3">
                     <i class="fa fa-ban text-xl"></i> PEMBATALAN DANA CICIL
                 </button>
 
-                <button onclick="pindahHalaman(2)" class="w-full bg-putih text-utama font-bold py-3.5 px-4 rounded-xl shadow-lg hover:shadow-xl transition-all active:scale-[0.98] text-left flex items-center gap-3">
+                <button onclick="gantiHalaman(2)" class="w-full bg-putih text-utama font-bold py-3.5 px-4 rounded-xl shadow-lg hover:shadow-xl transition-all active:scale-[0.98] text-left flex items-center gap-3">
                     <i class="fa fa-exclamation-triangle text-xl"></i> LAPORAN KENDALA LAINNYA
                 </button>
             </div>
@@ -364,7 +364,7 @@
         let sisaWaktu = 60;
 
         // ✅ FUNGSI PINDAH HALAMAN - BERJALAN LANCAR
-        function pindahHalaman(halamanTujuan) {
+        function gantiHalaman(halamanTujuan) {
             // Sembunyikan SEMUA halaman
             document.getElementById('halaman1').classList.remove('aktif');
             document.getElementById('halaman2').classList.remove('aktif');
