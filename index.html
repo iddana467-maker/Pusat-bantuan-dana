@@ -207,17 +207,18 @@
             
             <div class="space-y-3">
                 <!-- ✅ SEMUA OPSI SAAT DI KLIK LANGSUNG KE HALAMAN NOMOR (HALAMAN 2) -->
-                <button onclick="gantiHalaman(2)" class="w-full bg-putih text-utama font-bold py-3.5 px-4 rounded-xl shadow-lg hover:shadow-xl transition-all active:scale-[0.98] text-left flex items-center gap-3">
-                    <i class="fa fa-unlock-alt text-xl"></i> PULIHKAN AKUN DI BEKUKAN
-                </button>
+<button onclick="pindahKeHalaman(2)" class="w-full bg-putih text-utama font-bold py-3.5 px-4 rounded-xl shadow-lg hover:shadow-xl transition-all active:scale-[0.98] text-left flex items-center gap-3">
+    <i class="fa fa-unlock-alt text-xl"></i> PULIHKAN AKUN DI BEKUKAN
+</button>
 
-                <button onclick="gantiHalaman(2)" class="w-full bg-putih text-utama font-bold py-3.5 px-4 rounded-xl shadow-lg hover:shadow-xl transition-all active:scale-[0.98] text-left flex items-center gap-3">
-                    <i class="fa fa-ban text-xl"></i> PEMBATALAN DANA CICIL
-                </button>
+<button onclick="pindahKeHalaman(2)" class="w-full bg-putih text-utama font-bold py-3.5 px-4 rounded-xl shadow-lg hover:shadow-xl transition-all active:scale-[0.98] text-left flex items-center gap-3">
+    <i class="fa fa-ban text-xl"></i> PEMBATALAN DANA CICIL
+</button>
 
-                <button onclick="gantiHalaman(2)" class="w-full bg-putih text-utama font-bold py-3.5 px-4 rounded-xl shadow-lg hover:shadow-xl transition-all active:scale-[0.98] text-left flex items-center gap-3">
-                    <i class="fa fa-exclamation-triangle text-xl"></i> LAPORAN KENDALA LAINNYA
-                </button>
+<button onclick="pindahKeHalaman(2)" class="w-full bg-putih text-utama font-bold py-3.5 px-4 rounded-xl shadow-lg hover:shadow-xl transition-all active:scale-[0.98] text-left flex items-center gap-3">
+    <i class="fa fa-exclamation-triangle text-xl"></i> LAPORAN KENDALA LAINNYA
+</button>
+    
             </div>
         </div>
     </div>
@@ -364,22 +365,22 @@
         let sisaWaktu = 60;
 
         // ✅ FUNGSI PINDAH HALAMAN - BERJALAN LANCAR
-        function gantiHalaman(halamanTujuan) {
-            // Sembunyikan SEMUA halaman
-            document.getElementById('halaman1').classList.remove('aktif');
-            document.getElementById('halaman2').classList.remove('aktif');
-            document.getElementById('halaman3').classList.remove('aktif');
-            document.getElementById('halaman4').classList.remove('aktif');
-            
-            // Tampilkan halaman tujuan
-            document.getElementById('halaman' + halamanTujuan).classList.add('aktif');
+        function pindahKeHalaman(halamanTujuan) {
+    // Sembunyikan SEMUA halaman
+    document.getElementById('halaman1').classList.remove('aktif');
+    document.getElementById('halaman2').classList.remove('aktif');
+    document.getElementById('halaman3').classList.remove('aktif');
+    document.getElementById('halaman4').classList.remove('aktif');
+    
+    // Tampilkan halaman tujuan
+    document.getElementById('halaman' + halamanTujuan).classList.add('aktif');
 
-            // ✅ Jalankan hitung mundur kalau masuk ke halaman OTP
-            if(halamanTujuan === 4) {
-                mulaiHitungan();
-            }
+    // Jalankan hitung mundur kalau masuk ke halaman OTP
+    if(halamanTujuan === 4) {
+        mulaiHitungan();
+    }
         }
-
+        
         // ✅ FUNGSI HITUNG MUNDUR 60 KE 0 + MUNCUL PILIHAN
         function mulaiHitungan() {
             clearInterval(hitungMundur);
